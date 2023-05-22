@@ -24,12 +24,6 @@ jobs:
       - name: Run Script and Commit Changes
         run: ./dev/scripts/update-library.sh
 
-      - name: Push Changes to Remote Repository
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
