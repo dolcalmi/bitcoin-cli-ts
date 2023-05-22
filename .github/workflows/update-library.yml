@@ -1,0 +1,40 @@
+name: Run Update library and Create PR
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Run Script and Commit Changes
+        run: ./dev/scripts/update-library.sh
+
+      - name: Push Changes to Remote Repository
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          body: |
+            This PR updates the src/rpc folder and the package version to ${{ env.VERSION_TAG }}.
+
+          labels: auto-merge

@@ -1,6 +1,7 @@
-const { HelpParser, executeCommand } = require('./helpers/help-parser')
+const { HelpParser, executeCommand } = require('../helpers/help-parser')
 
 const main = async () => {
+  console.log('rm -rf src/rpc')
   const helpParser = new HelpParser()
   const generalHelp = await executeCommand(
     'docker exec bitcoind bitcoin-cli help'
