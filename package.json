@@ -1,7 +1,7 @@
 {
   "name": "bitcoin-cli-ts",
   "version": "0.15.1",
-  "description": "Bitcoin client library for bitcoind json rpc api",
+  "description": "Auto-generated Bitcoin client library for bitcoind json rpc api",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.js",
@@ -9,10 +9,13 @@
     "node": ">=18"
   },
   "scripts": {
+    "tsc-check": "tsc --noEmit --skipLibCheck",
     "eslint-check": "eslint \"{src,test}/**/*.ts\"",
     "eslint-fix": "eslint \"{src,test}/**/*.ts\" --fix",
     "prettier-check": "prettier --check .",
     "prettier-write": "prettier --write .",
+    "check-code": "yarn eslint-check && yarn prettier-check && yarn tsc-check",
+    "check-code-fix": "yarn eslint-fix && yarn prettier-write",
     "postinstall": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
@@ -24,7 +27,8 @@
     "package": "yarn build && yarn pack",
     "test": "jest --no-cache",
     "test:cov": "jest --coverage --no-cache --runInBand",
-    "addscope": "node tools/packagejson name @dolcalmi/bitcoin-cli-ts"
+    "addscope": "node tools/packagejson name @dolcalmi/bitcoin-cli-ts",
+    "plop": "plop"
   },
   "publishConfig": {
     "access": "public"
@@ -33,10 +37,11 @@
     "dist"
   ],
   "keywords": [
-    "lnurl",
-    "lightning address",
-    "lightning",
-    "bitcoin-cli-ts"
+    "bitcoin",
+    "rpc",
+    "bitcoind",
+    "typescript",
+    "bitcoin-cli"
   ],
   "license": "MIT",
   "homepage": "https://github.com/dolcalmi/bitcoin-cli-ts",
@@ -61,10 +66,13 @@
     "@typescript-eslint/parser": "^5.59.6",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.2",
     "jest": "^29.5.0",
     "pinst": "^3.0.0",
+    "plop": "^3.1.2",
     "prettier": "^2.8.8",
     "process": "^0.11.10",
     "ts-jest": "^29.1.0",

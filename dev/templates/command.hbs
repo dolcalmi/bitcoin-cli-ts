@@ -1,0 +1,19 @@
+// Auto synced from github actions. Don't change this file
+
+import { Bitcoind, Json } from '../../types'
+import request from '../../rpc-request'
+
+type {{typeName}}Params = {
+  bitcoind: Bitcoind
+{{{rpcParams}}}
+}
+
+/**
+ * {{{descriptionCommand}}}
+ *
+ * {{{description}}}
+ */
+export function {{functionName}}(params: {{typeName}}Params) {
+  const { bitcoind, ...methodParams } = params
+  return request({ method: '{{rpcMethod}}', params: methodParams }, bitcoind)
+}
