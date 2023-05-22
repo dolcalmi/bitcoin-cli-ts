@@ -1,6 +1,6 @@
 # bitcoin-cli-ts
 
-Client library for bitcoin-cli-ts and lightning address
+Auto-generated Bitcoin client library for bitcoind json rpc api
 
 ## Installation
 
@@ -14,195 +14,30 @@ yarn add bitcoin-cli-ts
 
 ## Usage
 
-### LNURL
+### Config
 
 ```js
-import { requestInvoice } from 'bitcoin-cli-ts'
+import { authenticatedBitcoind } from 'bitcoin-cli-ts'
 
-const { invoice, params, successAction, validatePreimage } =
-  await requestInvoice({
-    lnUrlOrAddress:
-      'lnurl1dp68gurn8ghj7urp0yh8xarpva5kueewvaskcmme9e5k7tewwajkcmpdddhx7amw9akxuatjd3cz7atnv4erqgfuvv5',
-    tokens: 333, // satoshis
-  })
+const { host, username, password, port } = getBitcoinCoreRPCConfig()
+const bitcoind = authenticatedBitcoind({
+  protocol: 'http',
+  host: host,
+  username,
+  password,
+  timeout: 30000,
+  port: parseInt(port, 10),
+  walletName: wallet, // optional
+})
 ```
 
-### Lightning Address
+### Use rpc command
 
 ```js
-import { requestInvoice } from 'bitcoin-cli-ts'
+import { getBalance } from 'bitcoin-cli-ts'
 
-const { invoice, params, successAction, validatePreimage } =
-  await requestInvoice({
-    lnUrlOrAddress: 'user@domain.com',
-    tokens: 333, // satoshis
-  })
+const balance = await getBalance({ bitcoind })
 ```
-
-## Methods
-
-- [requestInvoice](#requestInvoice) - Request an invoice for lnurl o lightning address
-- [requestPayServiceParams](#requestPayServiceParams) - Request pay service params (1st step)
-- [requestInvoiceWithServiceParams](#requestInvoiceWithServiceParams) - Request an invoice for lnurl o lightning address with the given [service params](#requestPayServiceParams) (2nd step)
-
-### requestInvoice
-
-Request an invoice for lnurl o lightning address
-
-```
-{
-  lnUrlOrAddress: <Bech32 encoded url (lnurl) or lightning address String>
-  tokens: <Amount in satoshis Number>
-  [comment]: <Comment String>
-  [onionAllowed]: <Onion url allowed Bool> // Default to false
-  [validateInvoice]: <If true validates the invoice amount and description hash Bool> // Default to false
-  [fetchGet]: <Function to make a GET request Function> // Default to axios get
-}
-
-@throws <Error>
-
-@returns
-{
-  invoice: <Invoice returned by pay service String>
-  successAction: <Success action defined by lnurl-rfc Object>
-  params: {
-    callback: <Url used to request the invoice String>
-    fixed: <Indicates if amount must be a fixed amount Bool>
-    min: <Min amount in satoshis Number>
-    max: <Max amount in satoshis Number>
-    domain: <Callback domain String>
-    metadata: <Decoded metadata Array>
-    metadataHash: <Metadata hash String>
-    identifier: <Metadata identifier String>
-    description: <Metadata description String>
-    image: <Metadata base64 image String>
-    commentAllowed: <Number of characters accepted for the comment query parameter Number> // Default to 0 - not allowed
-  }
-  hasValidAmount: <True if the returned invoice amount is equal to tokens param Bool>
-  hasValidDescriptionHash: <True if the returned invoice description hash is equal to metadata hash Bool>
-  validatePreimage: <validates if preimage param is valid for invoice Function> // (preimage: string) => boolean
-}
-```
-
-Example:
-
-```node
-const { invoice, params, successAction } = await requestInvoice({
-  lnUrlOrAddress:
-    'lnurl1dp68gurn8ghj7urp0yh8xarpva5kueewvaskcmme9e5k7tewwajkcmpdddhx7amw9akxuatjd3cz7atnv4erqgfuvv5',
-  tokens: 333,
-})
-```
-
-### requestPayServiceParams
-
-Request pay service params for lnurl o lightning address (1st step)
-
-```
-{
-  lnUrlOrAddress: <Bech32 encoded url (lnurl) or lightning address String>
-  [onionAllowed]: <Onion url allowed Bool> // Default to false
-  [fetchGet]: <Function to make a GET request Function> // Default to axios get
-}
-
-@throws <Error>
-
-@returns
-{
-  callback: <Url used to request the invoice String>
-  fixed: <Indicates if amount must be a fixed amount Bool>
-  min: <Min amount in satoshis Number>
-  max: <Max amount in satoshis Number>
-  domain: <Callback domain String>
-  metadata: <Decoded metadata Array>
-  metadataHash: <Metadata hash String>
-  identifier: <Metadata identifier String>
-  description: <Metadata description String>
-  image: <Metadata base64 image String>
-  commentAllowed: <Number of characters accepted for the comment query parameter Number> // Default to 0 - not allowed
-}
-```
-
-Example:
-
-```node
-const params = await requestPayServiceParams({
-  lnUrlOrAddress:
-    'lnurl1dp68gurn8ghj7urp0yh8xarpva5kueewvaskcmme9e5k7tewwajkcmpdddhx7amw9akxuatjd3cz7atnv4erqgfuvv5',
-})
-```
-
-### requestInvoiceWithServiceParams
-
-Request an invoice for lnurl o lightning address with the given service params (2nd step)
-
-```
-{
-  params: {
-    callback: <Url used to request the invoice String>
-    fixed: <Indicates if amount must be a fixed amount Bool>
-    min: <Min amount in satoshis Number>
-    max: <Max amount in satoshis Number>
-    domain: <Callback domain String>
-    metadata: <Decoded metadata Array>
-    metadataHash: <Metadata hash String>
-    identifier: <Metadata identifier String>
-    description: <Metadata description String>
-    image: <Metadata base64 image String>
-    commentAllowed: <Number of characters accepted for the comment query parameter Number> // Default to 0 - not allowed
-  }
-  tokens: <Amount in satoshis Number>
-  [comment]: <Comment String>
-  [onionAllowed]: <Onion url allowed Bool> // Default to false
-  [validateInvoice]: <If true validates the invoice amount and description hash Bool> // Default to false
-  [fetchGet]: <Function to make a GET request Function> // Default to axios get
-}
-
-@throws <Error>
-
-@returns
-{
-  invoice: <Invoice returned by pay service String>
-  successAction: <Success action defined by lnurl-rfc Object>
-  params: {
-    callback: <Url used to request the invoice String>
-    fixed: <Indicates if amount must be a fixed amount Bool>
-    min: <Min amount in satoshis Number>
-    max: <Max amount in satoshis Number>
-    domain: <Callback domain String>
-    metadata: <Decoded metadata Array>
-    metadataHash: <Metadata hash String>
-    identifier: <Metadata identifier String>
-    description: <Metadata description String>
-    image: <Metadata base64 image String>
-    commentAllowed: <Number of characters accepted for the comment query parameter Number> // Default to 0 - not allowed
-  }
-  hasValidAmount: <True if the returned invoice amount is equal to tokens param>
-  hasValidDescriptionHash: <True if the returned invoice description hash is equal to metadata hash>
-  validatePreimage: <validates if preimage param is valid for invoice Function> // (preimage: string) => boolean
-}
-```
-
-Example:
-
-```node
-const params = await requestInvoiceWithServiceParams({
-  params,
-  tokens: 333,
-})
-```
-
-## Utils
-
-- [decodeUrlOrAddress](#decodeUrlOrAddress) - Decode a bech32 encoded url (lnurl) or lightning address and return a url
-- [isLnurl](#isLnurl) - Verify if a string is a valid lnurl value
-- [parseLnUrl](#parseLnUrl) - Parse an url and return a bech32 encoded url (lnurl)
-- [isLightningAddress](#isLightningAddress) - Verify if a string is a lightning adress
-- [parseLightningAddress](#parseLightningAddress) - Parse an address and return username and domain
-- [isOnionUrl](#isOnionUrl) - Verify if a string is an onion url
-- [getHashFromInvoice](#getHashFromInvoice) - Decodes an invoice(string) and get the hash
-- [isValidPreimage](#isValidPreimage) - Returns true if the given preimage is valid for invoice
-- [decipherAES](#decipherAES) - Decipher ciphertext with a preimage
 
 ## Test
 
@@ -260,8 +95,5 @@ Please check more details in [npm link](https://docs.npmjs.com/cli/v6/commands/n
 
 This library was developed based on:
 
-- [lnurl-rfc](https://github.com/fiatjaf/lnurl-rfc)
-- [js-lnurl](https://github.com/fiatjaf/js-lnurl)
-- [Lightning Address](https://github.com/andrerfneves/lightning-address)
-- [BlueWallet](https://github.com/BlueWallet/BlueWallet)
+- [developer.bitcoin.org helpers](https://github.com/bitcoin-dot-org/developer.bitcoin.org/tree/master/helpers/rpc)
 - [Example TypeScript Package ](https://github.com/tomchen/example-typescript-package)
