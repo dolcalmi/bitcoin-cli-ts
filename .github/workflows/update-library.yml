@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
@@ -25,13 +25,17 @@ jobs:
         run: ./dev/scripts/update-library.sh
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          add-paths: |
+            package.json
+            src/rpc
           commit-message: 'feat: update rpc methods with bitcoin core ${{ env.VERSION_TAG }}'
           title: 'feat: update rpc methods with bitcoin core ${{ env.VERSION_TAG }}'
           body: |
-            This PR updates the src/rpc folder and the package version to ${{ env.VERSION_TAG }}.
+            This PR updates rpc methods in src/rpc folder and the package version to ${{ env.VERSION_TAG }}.
 
           labels: auto-merge

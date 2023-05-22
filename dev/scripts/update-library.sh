@@ -104,15 +104,8 @@ if [ $exit_code -eq 1 ]; then
   exit 1
 fi
 
-echo "Adding to the repo $next_version"
-
-commit_message="feat: update rpc methods with bitcoin core '${next_version_tag}'"
+echo "Updating package version to $next_version"
 yarn version --new-version "$next_version" --no-git-tag-version
-
-git config --local user.name 'github-actions[bot]'
-git config --local user.email 'github-actions[bot]@users.noreply.github.com'
-git add package.json src/rpc
-git commit -m "$commit_message"
 
 # Set the environment variable using echo
 echo "VERSION_TAG=$next_version_tag" >> $GITHUB_ENV
