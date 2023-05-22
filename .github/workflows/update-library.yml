@@ -28,7 +28,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: 'feat-bump-rpc-methods-${{ env.VERSION_TAG }}'
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           add-paths: |
             package.json
