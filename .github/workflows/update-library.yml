@@ -35,6 +35,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+          commit-message: 'feat: update rpc methods with bitcoin core ${{ env.VERSION_TAG }}'
+          title: 'feat: update rpc methods with bitcoin core ${{ env.VERSION_TAG }}'
           body: |
             This PR updates the src/rpc folder and the package version to ${{ env.VERSION_TAG }}.
 
