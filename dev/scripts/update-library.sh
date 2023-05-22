@@ -39,7 +39,7 @@ wait_for_container() {
 }
 
 stop_container() {
-  echo "Stoping container"
+  echo "Stopping container"
   docker stop -t 0 "$container_name" 2>/dev/null
 }
 
