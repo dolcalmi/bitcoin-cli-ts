@@ -10,7 +10,7 @@ type GetPeerInfoParams = {
 /**
  * getpeerinfo
  *
- * Returns data about each connected network node as a json array of objects.
+ * Returns data about each connected network peer as a json array of objects.
  *
  */
 export function getPeerInfo(params: GetPeerInfoParams) {

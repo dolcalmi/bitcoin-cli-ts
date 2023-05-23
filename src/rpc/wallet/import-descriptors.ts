@@ -15,7 +15,7 @@ type ImportDescriptorsParams = {
                                             Use the string "now" to substitute the current synced blockchain time.
                                             "now" can be specified to bypass scanning, for outputs which are known to never have been used, and
                                             0 can be specified to scan the entire blockchain. Blocks up to 2 hours before the earliest timestamp
-                                            of all descriptors being imported will be scanned.
+                                            of all descriptors being imported will be scanned as well as the mempool.
          "internal": bool,                  (boolean, optional, default=false) Whether matching outputs should be treated as not incoming payments (e.g. change)
          "label": "str",                    (string, optional, default="") Label to assign to the address, only allowed with internal=false. Disabled for ranged descriptors
        },

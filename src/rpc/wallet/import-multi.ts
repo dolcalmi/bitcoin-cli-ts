@@ -27,7 +27,7 @@ type ImportMultiParams = {
          ], */
   requests: Array<unknown>
   /* {
-       "rescan": bool,                                              (boolean, optional, default=true) Stating if should rescan the blockchain after all imports
+       "rescan": bool,                                              (boolean, optional, default=true) Scan the chain and mempool for wallet transactions after all imports.
      } */
   options?: Json
 }
@@ -40,6 +40,8 @@ type ImportMultiParams = {
  * Conversely, if all the private keys are provided and the address/script is spendable, the watchonly option must be set to false, or a warning will be returned.
  * Note: This call can take over an hour to complete if rescan is true, during that time, other rpc calls
  * may report that the imported keys, addresses or scripts exist but related transactions are still missing.
+ * The rescan parameter can be set to false if the key was never used to create transactions. If it is set to false,
+ * but the key was used to create transactions, rescanblockchain needs to be called with the appropriate block range.
  * Note: Use "getwalletinfo" to query the scanning progress.
  *
  */
