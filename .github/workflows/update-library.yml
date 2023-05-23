@@ -8,7 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      pull_number: ${{ steps.create_pr.outputs.pull-request-number }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -25,6 +26,7 @@ jobs:
         run: ./dev/scripts/update-library.sh
 
       - name: Create Pull Request
+        id: create_pr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -39,3 +41,19 @@ jobs:
             This PR updates rpc methods in src/rpc folder and the package version to ${{ env.VERSION_TAG }}.
 
           labels: auto-merge
+  automerge:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Squash and merge Pull Request
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ needs.build.outputs.pull_number }}
+          merge-method: squash
+      - name: Create Tag
+        run: |
+          TAG_NAME=$(node -p "require('./package.json').version")
+          git tag "v$TAG_NAME"
+          git push origin "v$TAG_NAME"
