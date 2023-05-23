@@ -27,7 +27,7 @@ type CreatePsbtParams = {
   outputs: Array<unknown>
   /* Raw locktime. Non-0 value also locktime-activates inputs */
   locktime?: number
-  /* Marks this transaction as BIP125 replaceable.
+  /* Marks this transaction as BIP125-replaceable.
        Allows this transaction to be replaced by a transaction with higher fees. If provided, it is an error if explicit sequence numbers are incompatible. */
   replaceable?: boolean
 }

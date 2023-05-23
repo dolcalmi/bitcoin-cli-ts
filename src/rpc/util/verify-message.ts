@@ -16,7 +16,7 @@ type VerifyMessageParams = {
 /**
  * verifymessage "address" "signature" "message"
  *
- * Verify a signed message
+ * Verify a signed message.
  *
  */
 export function verifyMessage(params: VerifyMessageParams) {

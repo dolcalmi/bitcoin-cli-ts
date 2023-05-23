@@ -11,10 +11,12 @@ type ListReceivedByLabelParams = {
   include_empty?: boolean
   /* Whether to include watch-only addresses (see 'importaddress') */
   include_watchonly?: boolean
+  /* Include immature coinbase transactions. */
+  include_immature_coinbase?: boolean
 }
 
 /**
- * listreceivedbylabel ( minconf include_empty include_watchonly )
+ * listreceivedbylabel ( minconf include_empty include_watchonly include_immature_coinbase )
  *
  * List received transactions by label.
  *
