@@ -5,10 +5,12 @@ import request from '../../rpc-request'
 
 type ListDescriptorsParams = {
   bitcoind: Bitcoind
+  /* Show private descriptors. */
+  private?: boolean
 }
 
 /**
- * listdescriptors
+ * listdescriptors ( private )
  *
  * List descriptors imported into a descriptor-enabled wallet.
  *

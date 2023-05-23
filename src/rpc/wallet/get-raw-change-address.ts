@@ -5,7 +5,7 @@ import request from '../../rpc-request'
 
 type GetRawChangeAddressParams = {
   bitcoind: Bitcoind
-  /* The address type to use. Options are "legacy", "p2sh-segwit", and "bech32". */
+  /* The address type to use. Options are "legacy", "p2sh-segwit", "bech32", and "bech32m". */
   address_type?: string
 }
 

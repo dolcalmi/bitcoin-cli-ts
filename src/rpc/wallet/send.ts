@@ -34,11 +34,6 @@ type SendParams = {
        "change_address": "hex",          (string, optional, default=pool address) The bitcoin address to receive the change
        "change_position": n,             (numeric, optional, default=random) The index of the change output
        "change_type": "str",             (string, optional, default=set by -changetype) The output type to use. Only valid if change_address is not specified. Options are "legacy", "p2sh-segwit", and "bech32".
-       "conf_target": n,                 (numeric, optional, default=wallet -txconfirmtarget) Confirmation target in blocks
-       "estimate_mode": "str",           (string, optional, default="unset") The fee estimate mode, must be one of (case insensitive):
-                                         "unset"
-                                         "economical"
-                                         "conservative"
        "fee_rate": amount,               (numeric or string, optional, default=not set, fall back to wallet fee estimation) Specify a fee rate in sat/vB.
        "include_watching": bool,         (boolean, optional, default=true for watch-only wallets, otherwise false) Also select inputs which are watch only.
                                          Only solvable inputs can be used. Watch-only destinations are solvable if the public key and/or output script was imported,
@@ -47,6 +42,7 @@ type SendParams = {
          "txid",                         (string, required) The transaction id
          vout,                           (numeric, required) The output number
          sequence,                       (numeric, required) The sequence number
+         weight,                         (numeric, optional, default=Calculated from wallet and solving data) The maximum weight for this input, including the weight of the outpoint and sequence number. Note that signature sizes are not guaranteed to be consistent, so the maximum DER signatures size of 73 bytes should be used when considering ECDSA signatures.Remember to convert serialized sizes to weight units when necessary.
          ...
        ], */
   options?: Json
