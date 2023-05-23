@@ -45,10 +45,15 @@ jobs:
         with:
           pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
           merge-method: squash
+
+      - name: Wait for Changes to be Merged
+        run: sleep 20s
   tag:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for Changes to be Pulled
+        run: sleep 10s
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Create Tag
