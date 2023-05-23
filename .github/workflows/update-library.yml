@@ -58,6 +58,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: main
+          token: ${{ secrets.GH_TOKEN_JP }}
       - name: Create Tag
         run: |
           TAG_NAME=$(node -p "require('./package.json').version")
