@@ -45,13 +45,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
       - name: Squash and merge Pull Request
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           pull-request-number: ${{ needs.build.outputs.pull_number }}
           merge-method: squash
+      - name: Checkout Repository
+        uses: actions/checkout@v3
       - name: Create Tag
         run: |
           TAG_NAME=$(node -p "require('./package.json').version")
