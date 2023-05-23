@@ -12,9 +12,9 @@ type FundRawTransactionParams = {
        "include_unsafe": bool,        (boolean, optional, default=false) Include inputs that are not safe to spend (unconfirmed transactions from outside keys and unconfirmed replacement transactions).
                                       Warning: the resulting transaction may become invalid if one of the unsafe inputs disappears.
                                       If that happens, you will need to fund the transaction with different inputs and republish it.
-       "changeAddress": "str",        (string, optional, default=pool address) The bitcoin address to receive the change
+       "changeAddress": "str",        (string, optional, default=automatic) The bitcoin address to receive the change
        "changePosition": n,           (numeric, optional, default=random) The index of the change output
-       "change_type": "str",          (string, optional, default=set by -changetype) The output type to use. Only valid if changeAddress is not specified. Options are "legacy", "p2sh-segwit", and "bech32".
+       "change_type": "str",          (string, optional, default=set by -changetype) The output type to use. Only valid if changeAddress is not specified. Options are "legacy", "p2sh-segwit", "bech32", and "bech32m".
        "includeWatching": bool,       (boolean, optional, default=true for watch-only wallets, otherwise false) Also select inputs which are watch only.
                                       Only solvable inputs can be used. Watch-only destinations are solvable if the public key and/or output script was imported,
                                       e.g. with 'importpubkey' or 'importmulti' with the 'pubkeys' or 'desc' field.

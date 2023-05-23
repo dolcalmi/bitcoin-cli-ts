@@ -13,7 +13,7 @@ type ImportWalletParams = {
  * importwallet "filename"
  *
  * Imports keys from a wallet dump file (see dumpwallet). Requires a new wallet backup to include imported keys.
- * Note: Use "getwalletinfo" to query the scanning progress.
+ * Note: Blockchain and Mempool will be rescanned after a successful import. Use "getwalletinfo" to query the scanning progress.
  *
  */
 export function importWallet(params: ImportWalletParams) {

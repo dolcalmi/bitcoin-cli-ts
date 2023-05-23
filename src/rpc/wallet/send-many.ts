@@ -21,7 +21,7 @@ type SendManyParams = {
        ...
      ] */
   subtractfeefrom?: Array<unknown>
-  /* Allow this transaction to be replaced by a transaction with higher fees via BIP 125 */
+  /* Signal that this transaction can be replaced by a transaction (BIP 125) */
   replaceable?: boolean
   /* Confirmation target in blocks */
   conf_target?: number
