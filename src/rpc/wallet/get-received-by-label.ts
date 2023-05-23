@@ -9,10 +9,12 @@ type GetReceivedByLabelParams = {
   label: string
   /* Only include transactions confirmed at least this many times. */
   minconf?: number
+  /* Include immature coinbase transactions. */
+  include_immature_coinbase?: boolean
 }
 
 /**
- * getreceivedbylabel "label" ( minconf )
+ * getreceivedbylabel "label" ( minconf include_immature_coinbase )
  *
  * Returns the total amount received by addresses with <label> in transactions with at least [minconf] confirmations.
  *

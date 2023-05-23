@@ -16,7 +16,7 @@ type LoadWalletParams = {
  *
  * Loads a wallet from a wallet file or directory.
  * Note that all wallet command-line options used when starting bitcoind will be
- * applied to the new wallet (eg -rescan, etc).
+ * applied to the new wallet.
  *
  */
 export function loadWallet(params: LoadWalletParams) {

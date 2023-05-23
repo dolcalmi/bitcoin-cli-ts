@@ -11,12 +11,14 @@ type ListReceivedByAddressParams = {
   include_empty?: boolean
   /* Whether to include watch-only addresses (see 'importaddress') */
   include_watchonly?: boolean
-  /* If present, only return information on this address. */
+  /* If present and non-empty, only return information on this address. */
   address_filter?: string
+  /* Include immature coinbase transactions. */
+  include_immature_coinbase?: boolean
 }
 
 /**
- * listreceivedbyaddress ( minconf include_empty include_watchonly "address_filter" )
+ * listreceivedbyaddress ( minconf include_empty include_watchonly "address_filter" include_immature_coinbase )
  *
  * List balances by receiving address.
  *

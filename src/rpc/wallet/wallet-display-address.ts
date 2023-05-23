@@ -5,12 +5,12 @@ import request from '../../rpc-request'
 
 type WalletDisplayAddressParams = {
   bitcoind: Bitcoind
-  /*  */
+  /* bitcoin address to display */
   address: string
 }
 
 /**
- * walletdisplayaddress bitcoin address to display
+ * walletdisplayaddress "address"
  *
  * Display address on an external signer for verification.
  *

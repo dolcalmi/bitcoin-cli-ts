@@ -17,7 +17,7 @@ type ImportDescriptorsParams = {
                                             0 can be specified to scan the entire blockchain. Blocks up to 2 hours before the earliest timestamp
                                             of all descriptors being imported will be scanned.
          "internal": bool,                  (boolean, optional, default=false) Whether matching outputs should be treated as not incoming payments (e.g. change)
-         "label": "str",                    (string, optional, default="") Label to assign to the address, only allowed with internal=false
+         "label": "str",                    (string, optional, default="") Label to assign to the address, only allowed with internal=false. Disabled for ranged descriptors
        },
        ...
      ] */

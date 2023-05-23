@@ -10,6 +10,7 @@ type WalletCreateFundedPsbtParams = {
          "txid": "hex",               (string, required) The transaction id
          "vout": n,                   (numeric, required) The output number
          "sequence": n,               (numeric, optional, default=depends on the value of the 'locktime' and 'options.replaceable' arguments) The sequence number
+         "weight": n,                 (numeric, optional, default=Calculated from wallet and solving data) The maximum weight for this input, including the weight of the outpoint and sequence number. Note that signature sizes are not guaranteed to be consistent, so the maximum DER signatures size of 73 bytes should be used when considering ECDSA signatures.Remember to convert serialized sizes to weight units when necessary.
        },
        ...
      ] */
@@ -52,10 +53,12 @@ type WalletCreateFundedPsbtParams = {
 }
 
 /**
- * walletcreatefundedpsbt ( [{"txid":"hex","vout":n,"sequence":n},...] ) [{"address":amount,...},{"data":"hex"},...] ( locktime options bip32derivs )
+ * walletcreatefundedpsbt ( [{"txid":"hex","vout":n,"sequence":n,"weight":n},...] ) [{"address":amount,...},{"data":"hex"},...] ( locktime options bip32derivs )
  *
  * Creates and funds a transaction in the Partially Signed Transaction format.
  * Implements the Creator and Updater roles.
+ * All existing inputs must either have their previous output transaction be in the wallet
+ * or be in the UTXO set. Solving data must be provided for non-wallet inputs.
  *
  */
 export function walletCreateFundedPsbt(params: WalletCreateFundedPsbtParams) {

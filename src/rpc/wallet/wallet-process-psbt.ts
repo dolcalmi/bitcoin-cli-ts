@@ -7,7 +7,7 @@ type WalletProcessPsbtParams = {
   bitcoind: Bitcoind
   /* The transaction base64 string */
   psbt: string
-  /* Also sign the transaction when updating */
+  /* Also sign the transaction when updating (requires wallet to be unlocked) */
   sign?: boolean
   /* The signature hash type to sign with if not specified by the PSBT. Must be one of
        "DEFAULT"
@@ -20,10 +20,12 @@ type WalletProcessPsbtParams = {
   sighashtype?: string
   /* Include BIP 32 derivation paths for public keys if we know them */
   bip32derivs?: boolean
+  /* Also finalize inputs if possible */
+  finalize?: boolean
 }
 
 /**
- * walletprocesspsbt "psbt" ( sign "sighashtype" bip32derivs )
+ * walletprocesspsbt "psbt" ( sign "sighashtype" bip32derivs finalize )
  *
  * Update a PSBT with input information from our wallet and then sign inputs
  * that we can sign for.

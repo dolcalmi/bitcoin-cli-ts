@@ -1,6 +1,5 @@
 export * from './blockchain'
 export * from './control'
-export * from './generating'
 export * from './mining'
 export * from './network'
 export * from './rawtransactions'
