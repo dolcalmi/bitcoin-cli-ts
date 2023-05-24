@@ -1,12 +1,39 @@
 const { HelpParser, executeCommand } = require('../helpers/help-parser')
 
+const dumpAllCommands = async () => {
+  try {
+    const uniqueMethodNames = new Set()
+    const dump = await executeCommand(
+      'docker exec bitcoind bitcoin-cli help dump_all_command_conversions'
+    )
+    const array = JSON.parse(dump)
+    array.forEach(([methodName]) => {
+      uniqueMethodNames.add(methodName)
+    })
+
+    return Array.from(uniqueMethodNames)
+  } catch (error) {
+    return []
+  }
+}
+
 const main = async () => {
   console.log('rm -rf src/rpc')
   const helpParser = new HelpParser()
   const generalHelp = await executeCommand(
     'docker exec bitcoind bitcoin-cli help'
   )
-  const groups = helpParser.parseHelpOverview(generalHelp).grouped()
+
+  const help = helpParser.parseHelpOverview(generalHelp)
+  const flat = help.flat()
+  const allCommands = await dumpAllCommands()
+  for (let cmd of allCommands) {
+    if (!flat.includes(cmd)) {
+      help.add('hidden', cmd)
+    }
+  }
+
+  const groups = help.grouped()
 
   for (let group in groups) {
     for (let cmd of groups[group]) {
