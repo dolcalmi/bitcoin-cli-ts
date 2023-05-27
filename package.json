@@ -1,7 +1,7 @@
 {
   "name": "bitcoin-cli-ts",
   "version": "24.1.0",
-  "description": "Auto-generated Bitcoin client library for bitcoind json rpc api",
+  "description": "Auto-generated Bitcoin client library for bitcoind JSON-RPC API",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.js",
@@ -38,6 +38,7 @@
   ],
   "keywords": [
     "bitcoin",
+    "JSON-RPC",
     "rpc",
     "bitcoind",
     "typescript",

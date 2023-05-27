@@ -1,6 +1,6 @@
 # bitcoin-cli-ts
 
-Auto-generated Bitcoin client library for bitcoind json rpc api
+Auto-generated Bitcoin client library for Bitcoin Core JSON-RPC API
 
 ## Installation
 
@@ -13,6 +13,10 @@ yarn add bitcoin-cli-ts
 ```
 
 ## Usage
+
+Choose the [version](https://www.npmjs.com/package/bitcoin-cli-ts?activeTab=versions) that corresponds to your Bitcoin Core version.
+
+We use the major and minor versions from [Bitcoin Core Releases](https://github.com/bitcoin/bitcoin/releases) and reserve the patch version for library fixes related to static code or dependencies.
 
 ### Config
 
