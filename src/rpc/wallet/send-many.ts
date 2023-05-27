@@ -32,7 +32,7 @@ type SendManyParams = {
   estimate_mode?: string
   /* Specify a fee rate in sat/vB. */
   fee_rate?: number | string
-  /* If true, return extra information about the transaction. */
+  /* If true, return extra infomration about the transaction. */
   verbose?: boolean
 }
 
