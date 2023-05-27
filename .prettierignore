@@ -1,2 +1,3 @@
 dev/templates/*.hbs
 dist/
+bitcoin*/

@@ -29,6 +29,7 @@ const main = async () => {
   let nextVersionFound = false
   let nextVersion = ''
   let nextVersionTag = ''
+  let nextVersionvTag = ''
   const versionRegex = /^\D*?(\d+\.\d+)/
 
   for (let i = releasesData.length - 1; i >= 0; i--) {
@@ -42,7 +43,8 @@ const main = async () => {
       packageVersionMatch &&
       Number(releaseVersionMatch[1]) > Number(packageVersionMatch[1])
     ) {
-      nextVersionTag = releaseVersion
+      nextVersionVTag = releaseVersion
+      nextVersionTag = releaseVersion.replace('v', '')
       nextVersion = convertToSemver(releaseVersionMatch[1])
       break
     }
@@ -52,6 +54,7 @@ const main = async () => {
     return JSON.stringify({
       next_version: nextVersion,
       next_version_tag: nextVersionTag,
+      next_version_vtag: nextVersionVTag,
     })
   }
 

@@ -30,7 +30,7 @@ module.exports = function (plop) {
       answers.functionName.slice(1)
 
     const help = await executeCommand(
-      `docker exec bitcoind bitcoin-cli help ${answers.rpcMethod}`
+      `${process.env.BITCOIND_PATH}/bitcoin-cli -conf=${process.env.BITCOIND_CONFIG} help ${answers.rpcMethod}`
     )
     const command = helpParser.parseHelpCommand(help)
 
