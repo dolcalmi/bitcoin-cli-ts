@@ -4,7 +4,7 @@ const dumpAllCommands = async () => {
   try {
     const uniqueMethodNames = new Set()
     const dump = await executeCommand(
-      'docker exec bitcoind bitcoin-cli help dump_all_command_conversions'
+      `${process.env.BITCOIND_PATH}/bitcoin-cli -conf=${process.env.BITCOIND_CONFIG} help dump_all_command_conversions`
     )
     const array = JSON.parse(dump)
     array.forEach(([methodName]) => {
@@ -21,9 +21,8 @@ const main = async () => {
   console.log('rm -rf src/rpc')
   const helpParser = new HelpParser()
   const generalHelp = await executeCommand(
-    'docker exec bitcoind bitcoin-cli help'
+    `${process.env.BITCOIND_PATH}/bitcoin-cli -conf=${process.env.BITCOIND_CONFIG} help`
   )
-
   const help = helpParser.parseHelpOverview(generalHelp)
   const flat = help.flat()
   const allCommands = await dumpAllCommands()

@@ -4,3 +4,4 @@
 *.test.ts
 dist
 **/.hbs
+bitcoin-*/

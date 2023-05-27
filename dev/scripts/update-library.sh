@@ -1,99 +1,72 @@
 #!/bin/sh
 
-# Set the container name or ID
-container_name="bitcoind"
-
 # Set the maximum number of retries
 max_retries=10
 
 # Set the sleep duration between retries (in seconds)
 retry_interval=5
 
-# Function to check if the container is running
-is_container_running() {
-  docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null
-}
-
 # Function to check if the port/service is available
 is_service_available() {
   curl -s http://localhost:18443 >/dev/null 2>&1
 }
 
-# Wait for the container and service to become ready
-wait_for_container() {
+# Wait for bitcoind to become ready
+wait_for_bitcoind() {
   retries=0
   while [ $retries -lt $max_retries ]; do
-    if [ "$(is_container_running)" = "true" ] && is_service_available; then
-      echo "Container and service are ready!"
+    if is_service_available; then
+      echo "bitcoind is ready!"
       break
     fi
-    echo "Waiting for the container and service to become ready..."
+    echo "Waiting for bitcoind to become ready..."
     sleep $retry_interval
     retries=$((retries + 1))
   done
 
   if [ $retries -eq $max_retries ]; then
-    echo "Timed out waiting for the container and service to become ready."
+    echo "Timed out waiting for bitcoind to become ready."
     exit 1
   fi
 }
 
-stop_container() {
-  echo "Stopping container"
-  docker stop -t 0 "$container_name" 2>/dev/null
-}
-
-# Function to check if Docker image tag exists
-check_docker_image_tag() {
-    local image_name="$1"
-    local tag="$2"
-
-    # Check if the image tag exists
-    docker pull "$image_name:$tag" >/dev/null 2>&1
-    local pull_exit_code=$?
-
-    if [ $pull_exit_code -eq 0 ]; then
-        echo "Docker image tag '$tag' exists for image '$image_name'."
-    else
-        echo "Docker image tag '$tag' does not exist for image '$image_name'."
-        exit 1
-    fi
-}
-
-result=$(node dev/scripts/get-next-version.js | jq -r '.next_version, .next_version_tag')
+result=$(node dev/scripts/get-next-version.js | jq -r '.next_version, .next_version_tag, .next_version_vtag')
 # Check the exit code of the command
 exit_code=$?
 if [ $exit_code -eq 1 ]; then
   echo "Error: Failed to get the next version. Stopping script."
   exit 1
 fi
-
+echo $result
 next_version=$(echo "$result" | sed -n '1p')
 next_version_tag=$(echo "$result" | sed -n '2p')
+next_version_vtag=$(echo "$result" | sed -n '3p')
 
-# Check if docker image tag exists
-check_docker_image_tag "lncm/bitcoind" "$next_version_tag"
+download_url="https://bitcoincore.org/bin/bitcoin-core-$next_version_tag/bitcoin-$next_version_tag-x86_64-linux-gnu.tar.gz"
+bitcoin_dir="bitcoin-$next_version_tag"
+download_path="$bitcoin_dir.tar.gz"
 
-# Stop the container (if running)
-stop_container
+echo "Downloading $download_url -> $download_path"
+curl -o $download_path $download_url
+tar -xzf "$download_path" && rm -f $download_path
 
-# Run the container
-docker run  -it  --rm  --detach \
-    -v ${PWD}/dev/bitcoind/bitcoin.conf:/data/.bitcoin/bitcoin.conf \
-    -p 18443:18443 \
-    --name "$container_name" \
-    "lncm/bitcoind:$next_version_tag"
+config_file=$PWD/dev/bitcoind/bitcoin.conf
+pid_file=$PWD/dev/bitcoind/bitcoind.pid
+bitcoind_path=./$bitcoin_dir/bin
 
-wait_for_container
+$bitcoind_path/bitcoind -conf=$config_file -pid=$pid_file -daemon
+
+wait_for_bitcoind
 
 echo "Creating plop commands"
-node ./dev/scripts/create-plop-script.js > ./dev/scripts/run-plop.sh
+BITCOIND_PATH=$bitcoind_path BITCOIND_CONFIG=$config_file node ./dev/scripts/create-plop-script.js > ./dev/scripts/run-plop.sh
 
 echo "Running plop commands"
-./dev/scripts/run-plop.sh
+BITCOIND_PATH=$bitcoind_path BITCOIND_CONFIG=$config_file ./dev/scripts/run-plop.sh
 
-# Stop the container
-stop_container
+# Stop bitcoind
+kill $(cat $pid_file)
+rm -rf $bitcoin_dir
 
 echo "Building library"
 yarn build
@@ -108,4 +81,4 @@ echo "Updating package version to $next_version"
 yarn version --new-version "$next_version" --no-git-tag-version
 
 # Set the environment variable using echo
-echo "VERSION_TAG=$next_version_tag" >> $GITHUB_ENV
+echo "VERSION_TAG=$next_version_vtag" >> $GITHUB_ENV
