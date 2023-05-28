@@ -17,6 +17,8 @@ type RestoreWalletParams = {
  * restorewallet "wallet_name" "backup_file" ( load_on_startup )
  *
  * Restore and loads a wallet from backup.
+ * The rescan is significantly faster if a descriptor wallet is restored
+ * and block filters are available (using startup option "-blockfilterindex=1").
  *
  */
 export function restoreWallet(params: RestoreWalletParams) {

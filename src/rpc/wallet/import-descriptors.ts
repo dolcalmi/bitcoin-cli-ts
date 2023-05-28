@@ -9,8 +9,8 @@ type ImportDescriptorsParams = {
        {                                    (json object)
          "desc": "str",                     (string, required) Descriptor to import.
          "active": bool,                    (boolean, optional, default=false) Set this descriptor to be the active descriptor for the corresponding output type/externality
-         "range": n or [n,n],               (numeric or array) If a ranged descriptor is used, this specifies the end or the range (in the form [begin,end]) to import
-         "next_index": n,                   (numeric) If a ranged descriptor is set to active, this specifies the next index to generate addresses from
+         "range": n or [n,n],               (numeric or array, optional) If a ranged descriptor is used, this specifies the end or the range (in the form [begin,end]) to import
+         "next_index": n,                   (numeric, optional) If a ranged descriptor is set to active, this specifies the next index to generate addresses from
          "timestamp": timestamp | "now",    (integer / string, required) Time from which to start rescanning the blockchain for this descriptor, in UNIX epoch time
                                             Use the string "now" to substitute the current synced blockchain time.
                                             "now" can be specified to bypass scanning, for outputs which are known to never have been used, and
@@ -30,6 +30,7 @@ type ImportDescriptorsParams = {
  * Import descriptors. This will trigger a rescan of the blockchain based on the earliest timestamp of all descriptors being imported. Requires a new wallet backup.
  * Note: This call can take over an hour to complete if using an early timestamp; during that time, other rpc calls
  * may report that the imported keys, addresses or scripts exist but related transactions are still missing.
+ * The rescan is significantly faster if block filters are available (using startup option "-blockfilterindex=1").
  *
  */
 export function importDescriptors(params: ImportDescriptorsParams) {

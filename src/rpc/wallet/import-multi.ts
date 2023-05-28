@@ -7,7 +7,7 @@ type ImportMultiParams = {
   bitcoind: Bitcoind
   /* [
        {                                                            (json object)
-         "desc": "str",                                             (string) Descriptor to import. If using descriptor, do not also provide address/scriptPubKey, scripts, or pubkeys
+         "desc": "str",                                             (string, optional) Descriptor to import. If using descriptor, do not also provide address/scriptPubKey, scripts, or pubkeys
          "scriptPubKey": "<script>" | { "address":"<address>" },    (string / json, required) Type of scriptPubKey (string for script, json for address). Should not be provided if using a descriptor
          "timestamp": timestamp | "now",                            (integer / string, required) Creation time of the key expressed in UNIX epoch time,
                                                                     or the string "now" to substitute the current synced blockchain time. The timestamp of the oldest
@@ -15,8 +15,8 @@ type ImportMultiParams = {
                                                                     "now" can be specified to bypass scanning, for keys which are known to never have been used, and
                                                                     0 can be specified to scan the entire blockchain. Blocks up to 2 hours before the earliest key
                                                                     creation time of all keys being imported by the importmulti call will be scanned.
-         "redeemscript": "str",                                     (string) Allowed only if the scriptPubKey is a P2SH or P2SH-P2WSH address/scriptPubKey
-         "witnessscript": "str",                                    (string) Allowed only if the scriptPubKey is a P2SH-P2WSH or P2WSH address/scriptPubKey
+         "redeemscript": "str",                                     (string, optional) Allowed only if the scriptPubKey is a P2SH or P2SH-P2WSH address/scriptPubKey
+         "witnessscript": "str",                                    (string, optional) Allowed only if the scriptPubKey is a P2SH-P2WSH or P2WSH address/scriptPubKey
          "pubkeys": [                                               (json array, optional, default=[]) Array of strings giving pubkeys to import. They must occur in P2PKH or P2WPKH scripts. They are not required when the private key is also provided (see the "keys" argument).
            "pubKey",                                                (string)
            ...

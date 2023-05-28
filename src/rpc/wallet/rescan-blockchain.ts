@@ -16,6 +16,8 @@ type RescanBlockchainParams = {
  *
  * Rescan the local blockchain for wallet related transactions.
  * Note: Use "getwalletinfo" to query the scanning progress.
+ * The rescan is significantly faster when used on a descriptor wallet
+ * and block filters are available (using startup option "-blockfilterindex=1").
  *
  */
 export function rescanBlockchain(params: RescanBlockchainParams) {

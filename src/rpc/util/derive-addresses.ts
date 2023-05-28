@@ -16,10 +16,11 @@ type DeriveAddressesParams = {
  *
  * Derives one or more addresses corresponding to an output descriptor.
  * Examples of output descriptors are:
- *     pkh(<pubkey>)                        P2PKH outputs for the given pubkey
- *     wpkh(<pubkey>)                       Native segwit P2PKH outputs for the given pubkey
- *     sh(multi(<n>,<pubkey>,<pubkey>,...)) P2SH-multisig outputs for the given threshold and pubkeys
- *     raw(<hex script>)                    Outputs whose scriptPubKey equals the specified hex scripts
+ *     pkh(<pubkey>)                                     P2PKH outputs for the given pubkey
+ *     wpkh(<pubkey>)                                    Native segwit P2PKH outputs for the given pubkey
+ *     sh(multi(<n>,<pubkey>,<pubkey>,...))              P2SH-multisig outputs for the given threshold and pubkeys
+ *     raw(<hex script>)                                 Outputs whose scriptPubKey equals the specified hex scripts
+ *     tr(<pubkey>,multi_a(<n>,<pubkey>,<pubkey>,...))   P2TR-multisig outputs for the given threshold and pubkeys
  *
  * In the above, <pubkey> either refers to a fixed public key in hexadecimal notation, or to an xpub/xprv optionally followed by one
  * or more path elements separated by "/", where "h" represents a hardened child key.

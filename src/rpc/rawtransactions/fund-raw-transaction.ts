@@ -7,27 +7,11 @@ type FundRawTransactionParams = {
   bitcoind: Bitcoind
   /* The hex string of the raw transaction */
   hexstring: string
-  /* {
-       "add_inputs": bool,            (boolean, optional, default=true) For a transaction with existing inputs, automatically include more if they are not enough.
-       "include_unsafe": bool,        (boolean, optional, default=false) Include inputs that are not safe to spend (unconfirmed transactions from outside keys and unconfirmed replacement transactions).
-                                      Warning: the resulting transaction may become invalid if one of the unsafe inputs disappears.
-                                      If that happens, you will need to fund the transaction with different inputs and republish it.
-       "changeAddress": "str",        (string, optional, default=automatic) The bitcoin address to receive the change
-       "changePosition": n,           (numeric, optional, default=random) The index of the change output
-       "change_type": "str",          (string, optional, default=set by -changetype) The output type to use. Only valid if changeAddress is not specified. Options are "legacy", "p2sh-segwit", "bech32", and "bech32m".
-       "includeWatching": bool,       (boolean, optional, default=true for watch-only wallets, otherwise false) Also select inputs which are watch only.
-                                      Only solvable inputs can be used. Watch-only destinations are solvable if the public key and/or output script was imported,
-                                      e.g. with 'importpubkey' or 'importmulti' with the 'pubkeys' or 'desc' field.
-       "lockUnspents": bool,          (boolean, optional, default=false) Lock selected unspent outputs
-       "fee_rate": amount,            (numeric or string, optional, default=not set, fall back to wallet fee estimation) Specify a fee rate in sat/vB.
-       "feeRate": amount,             (numeric or string, optional, default=not set, fall back to wallet fee estimation) Specify a fee rate in BTC/kvB.
-       "subtractFeeFromOutputs": [    (json array, optional, default=[]) The integers.
-                                      The fee will be equally deducted from the amount of each specified output.
-                                      Those recipients will receive less bitcoins than you enter in their corresponding amount field.
-                                      If no outputs are specified here, the sender pays the fee.
-         vout_index,                  (numeric) The zero-based output index, before a change output is added.
-         ...
-       ], */
+  /* {                            (json object)
+           "txid": "hex",             (string, required) The transaction id
+           "vout": n,                 (numeric, required) The output index
+           "weight": n,               (numeric, required) The maximum weight for this input, including the weight of the outpoint and sequence number. Note that serialized signature sizes are not guaranteed to be consistent, so the maximum DER signatures size of 73 bytes should be used when considering ECDSA signatures.Remember to convert serialized sizes to weight units when necessary.
+         }, */
   options?: Json
   /* Whether the transaction hex is a serialized witness transaction.
        If iswitness is not present, heuristic tests will be used in decoding.

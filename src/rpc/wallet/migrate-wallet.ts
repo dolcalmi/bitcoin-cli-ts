@@ -8,7 +8,7 @@ type MigrateWalletParams = {
   /* The name of the wallet to migrate. If provided both here and in the RPC endpoint, the two must be identical. */
   wallet_name?: string
   /* The wallet passphrase */
-  passphrase: string
+  passphrase?: string
 }
 
 /**

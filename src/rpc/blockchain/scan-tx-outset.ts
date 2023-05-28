@@ -18,7 +18,7 @@ type ScanTxOutsetParams = {
        },
        ...
      ] */
-  scanobjects: Array<unknown>
+  scanobjects?: Array<unknown>
 }
 
 /**
@@ -31,6 +31,10 @@ type ScanTxOutsetParams = {
  *     combo(<pubkey>)                      P2PK, P2PKH, P2WPKH, and P2SH-P2WPKH outputs for the given pubkey
  *     pkh(<pubkey>)                        P2PKH outputs for the given pubkey
  *     sh(multi(<n>,<pubkey>,<pubkey>,...)) P2SH-multisig outputs for the given threshold and pubkeys
+ *     tr(<pubkey>)                         P2TR
+ *     tr(<pubkey>,{pk(<pubkey>)})          P2TR with single fallback pubkey in tapscript
+ *     rawtr(<pubkey>)                      P2TR with the specified key as output key rather than inner
+ *     wsh(and_v(v:pk(<pubkey>),after(2)))  P2WSH miniscript with mandatory pubkey and a timelock
  *
  * In the above, <pubkey> either refers to a fixed public key in hexadecimal notation, or to an xpub/xprv optionally followed by one
  * or more path elements separated by "/", and optionally ending in "/*" (unhardened), or "/*'" or "/*h" (hardened) to specify all

@@ -29,7 +29,7 @@ type SendAllParams = {
        "include_watching": bool,    (boolean, optional, default=true for watch-only wallets, otherwise false) Also select inputs which are watch-only.
                                     Only solvable inputs can be used. Watch-only destinations are solvable if the public key and/or output script was imported,
                                     e.g. with 'importpubkey' or 'importmulti' with the 'pubkeys' or 'desc' field.
-       "inputs": [                  (json array, optional, default=[]) Use exactly the specified inputs to build the transaction. Specifying inputs is incompatible with send_max.
+       "inputs": [                  (json array, optional, default=[]) Use exactly the specified inputs to build the transaction. Specifying inputs is incompatible with the send_max, minconf, and maxconf options.
          {                          (json object)
            "txid": "hex",           (string, required) The transaction id
            "vout": n,               (numeric, required) The output number
