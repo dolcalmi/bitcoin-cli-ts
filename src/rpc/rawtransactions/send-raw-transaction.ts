@@ -10,10 +10,14 @@ type SendRawTransactionParams = {
   /* Reject transactions whose fee rate is higher than the specified value, expressed in BTC/kvB.
        Set to 0 to accept any fee rate. */
   maxfeerate?: number | string
+  /* Reject transactions with provably unspendable outputs (e.g. 'datacarrier' outputs that use the OP_RETURN opcode) greater than the specified value, expressed in BTC.
+       If burning funds through unspendable outputs is desired, increase this value.
+       This check is based on heuristics and does not guarantee spendability of outputs. */
+  maxburnamount?: number | string
 }
 
 /**
- * sendrawtransaction "hexstring" ( maxfeerate )
+ * sendrawtransaction "hexstring" ( maxfeerate maxburnamount )
  *
  * Submit a raw transaction (serialized, hex-encoded) to local node and network.
  * The transaction will be sent unconditionally to all peers, so using sendrawtransaction

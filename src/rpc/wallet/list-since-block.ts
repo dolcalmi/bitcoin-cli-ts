@@ -16,10 +16,12 @@ type ListSinceBlockParams = {
   include_removed?: boolean
   /* Also add entries for change outputs. */
   include_change?: boolean
+  /* Return only incoming transactions paying to addresses with the specified label. */
+  label?: string
 }
 
 /**
- * listsinceblock ( "blockhash" target_confirmations include_watchonly include_removed include_change )
+ * listsinceblock ( "blockhash" target_confirmations include_watchonly include_removed include_change "label" )
  *
  * Get all transactions in blocks since block [blockhash], or all transactions if omitted.
  * If "blockhash" is no longer a part of the main chain, transactions from the fork point onward are included.

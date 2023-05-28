@@ -6,7 +6,7 @@ import request from '../../rpc-request'
 type SendManyParams = {
   bitcoind: Bitcoind
   /* Must be set to "" for backwards compatibility. */
-  dummy: string
+  dummy?: string
   /* {
        "address": amount,    (numeric or string, required) The bitcoin address is the key, the numeric amount (can be string) in BTC is the value
        ...
@@ -37,7 +37,7 @@ type SendManyParams = {
 }
 
 /**
- * sendmany "" {"address":amount,...} ( minconf "comment" ["address",...] replaceable conf_target "estimate_mode" fee_rate verbose )
+ * sendmany ( "" ) {"address":amount,...} ( minconf "comment" ["address",...] replaceable conf_target "estimate_mode" fee_rate verbose )
  *
  * Send multiple times. Amounts are double-precision floating point numbers.
  * Requires wallet passphrase to be set with walletpassphrase call if wallet is encrypted.

@@ -17,7 +17,8 @@ type WalletCreateFundedPsbtParams = {
   inputs?: Array<unknown>
   /* [
        {                              (json object)
-         "address": amount,           (numeric or string, required) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in BTC
+         "address": amount,           (numeric or string, required) A key-value pair. The key (string) is the bitcoin address,
+                                      the value (float or string) is the amount in BTC
          ...
        },
        {                              (json object)
@@ -34,6 +35,8 @@ type WalletCreateFundedPsbtParams = {
        "include_unsafe": bool,        (boolean, optional, default=false) Include inputs that are not safe to spend (unconfirmed transactions from outside keys and unconfirmed replacement transactions).
                                       Warning: the resulting transaction may become invalid if one of the unsafe inputs disappears.
                                       If that happens, you will need to fund the transaction with different inputs and republish it.
+       "minconf": n,                  (numeric, optional, default=0) If add_inputs is specified, require inputs with at least this many confirmations.
+       "maxconf": n,                  (numeric, optional) If add_inputs is specified, require inputs with at most this many confirmations.
        "changeAddress": "str",        (string, optional, default=automatic) The bitcoin address to receive the change
        "changePosition": n,           (numeric, optional, default=random) The index of the change output
        "change_type": "str",          (string, optional, default=set by -changetype) The output type to use. Only valid if changeAddress is not specified. Options are "legacy", "p2sh-segwit", "bech32", and "bech32m".

@@ -27,7 +27,20 @@ type PsbtBumpFeeParams = {
                                   "unset"
                                   "economical"
                                   "conservative"
-     } */
+       "outputs": [               (json array, optional, default=[]) New outputs (key-value pairs) which will replace
+                                  the original ones, if provided. Each address can only appear once and there can
+                                  only be one "data" object.
+                                  
+         {                        (json object)
+           "address": amount,     (numeric or string, required) A key-value pair. The key (string) is the bitcoin address,
+                                  the value (float or string) is the amount in BTC
+           ...
+         },
+         {                        (json object)
+           "data": "hex",         (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+         },
+         ...
+       ], */
   options?: Json
 }
 

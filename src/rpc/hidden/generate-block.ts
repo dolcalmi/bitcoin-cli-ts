@@ -12,10 +12,12 @@ type GenerateBlockParams = {
        ...
      ] */
   transactions: Array<unknown>
+  /* Whether to submit the block before the RPC call returns or to return it as hex. */
+  submit?: boolean
 }
 
 /**
- * generateblock "output" ["rawtx/txid",...]
+ * generateblock "output" ["rawtx/txid",...] ( submit )
  *
  * Mine a set of ordered transactions to a specified address or descriptor and return the block hash.
  *

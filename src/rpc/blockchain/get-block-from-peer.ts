@@ -17,6 +17,9 @@ type GetBlockFromPeerParams = {
  * Attempt to fetch block from a given peer.
  * We must have the header for this block, e.g. using submitheader.
  * Subsequent calls for the same block and a new peer will cause the response from the previous peer to be ignored.
+ * Peers generally ignore requests for a stale block that they never fully verified, or one that is more than a month old.
+ * When a peer does not respond with a block, we will disconnect.
+ * Note: The block could be re-pruned as soon as it is received.
  * Returns an empty JSON object if the request was successfully scheduled.
  *
  */
