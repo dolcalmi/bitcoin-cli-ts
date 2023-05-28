@@ -32,12 +32,10 @@ wait_for_bitcoind() {
 
 result=$(node dev/scripts/get-next-version.js | jq -r '.next_version, .next_version_tag, .next_version_vtag')
 # Check the exit code of the command
-exit_code=$?
-if [ $exit_code -eq 1 ]; then
+if [ $? -ne 0 ]; then
   echo "Error: Failed to get the next version. Stopping script."
   exit 1
 fi
-echo $result
 next_version=$(echo "$result" | sed -n '1p')
 next_version_tag=$(echo "$result" | sed -n '2p')
 next_version_vtag=$(echo "$result" | sed -n '3p')
@@ -49,6 +47,11 @@ download_path="$bitcoin_dir.tar.gz"
 echo "Downloading $download_url -> $download_path"
 curl -o $download_path $download_url
 tar -xzf "$download_path" && rm -f $download_path
+# Check the exit code of the command
+if [ $? -ne 0 ]; then
+  echo "Error: download and unzip failed."
+  exit 1
+fi
 
 config_file=$PWD/dev/bitcoind/bitcoin.conf
 pid_file=$PWD/dev/bitcoind/bitcoind.pid

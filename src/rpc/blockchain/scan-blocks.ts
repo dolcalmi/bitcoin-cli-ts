@@ -3,7 +3,7 @@
 import { Bitcoind, Json } from '../../types'
 import request from '../../rpc-request'
 
-type ScanBlockSParams = {
+type ScanBlocksParams = {
   bitcoind: Bitcoind
   /* The action to execute
        "start" for starting a scan
@@ -38,7 +38,7 @@ type ScanBlockSParams = {
  * This call may take several minutes. Make sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)
  *
  */
-export function scanBlockS(params: ScanBlockSParams) {
+export function scanBlocks(params: ScanBlocksParams) {
   const { bitcoind, ...methodParams } = params
   return request({ method: 'scanblocks', params: methodParams }, bitcoind)
 }
