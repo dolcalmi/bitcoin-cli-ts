@@ -22,6 +22,7 @@ type SetHdSeedParams = {
  * HD will have a new HD seed set so that new keys added to the keypool will be derived from this new seed.
  * Note that you will need to MAKE A NEW BACKUP of your wallet after setting the HD wallet seed.
  * Requires wallet passphrase to be set with walletpassphrase call if wallet is encrypted.
+ * Note: This command is only compatible with legacy wallets.
  *
  */
 export function setHdSeed(params: SetHdSeedParams) {

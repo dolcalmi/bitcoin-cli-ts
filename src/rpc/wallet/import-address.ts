@@ -28,7 +28,7 @@ type ImportAddressParams = {
  * Note: If you import a non-standard raw script in hex form, outputs sending to it will be treated
  * as change, and not show up in many RPCs.
  * Note: Use "getwalletinfo" to query the scanning progress.
- * Note: This command is only compatible with legacy wallets. Use "importdescriptors" with "addr(X)" for descriptor wallets.
+ * Note: This command is only compatible with legacy wallets. Use "importdescriptors" for descriptor wallets.
  *
  */
 export function importAddress(params: ImportAddressParams) {

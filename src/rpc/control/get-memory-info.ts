@@ -7,7 +7,7 @@ type GetMemoryInfoParams = {
   bitcoind: Bitcoind
   /* determines what kind of information is returned.
        - "stats" returns general statistics about memory usage in the daemon.
-       - "mallocinfo" returns an XML string describing low-level heap state (only available if compiled with glibc 2.10+). */
+       - "mallocinfo" returns an XML string describing low-level heap state (only available if compiled with glibc). */
   mode?: string
 }
 

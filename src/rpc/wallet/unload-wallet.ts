@@ -14,7 +14,7 @@ type UnloadWalletParams = {
 /**
  * unloadwallet ( "wallet_name" load_on_startup )
  *
- * Unloads the wallet referenced by the request endpoint otherwise unloads the wallet specified in the argument.
+ * Unloads the wallet referenced by the request endpoint, otherwise unloads the wallet specified in the argument.
  * Specifying the wallet name on a wallet endpoint is invalid.
  *
  */

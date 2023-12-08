@@ -7,40 +7,17 @@ type PsbtBumpFeeParams = {
   bitcoind: Bitcoind
   /* The txid to be bumped */
   txid: string
-  /* {
-       "conf_target": n,          (numeric, optional, default=wallet -txconfirmtarget) Confirmation target in blocks
-                                  
-       "fee_rate": amount,        (numeric or string, optional, default=not set, fall back to wallet fee estimation) 
-                                  Specify a fee rate in sat/vB instead of relying on the built-in fee estimator.
-                                  Must be at least 1.000 sat/vB higher than the current transaction fee rate.
-                                  WARNING: before version 0.21, fee_rate was in BTC/kvB. As of 0.21, fee_rate is in sat/vB.
-                                  
-       "replaceable": bool,       (boolean, optional, default=true) Whether the new transaction should still be
-                                  marked bip-125 replaceable. If true, the sequence numbers in the transaction will
-                                  be left unchanged from the original. If false, any input sequence numbers in the
-                                  original transaction that were less than 0xfffffffe will be increased to 0xfffffffe
-                                  so the new transaction will not be explicitly bip-125 replaceable (though it may
-                                  still be replaceable in practice, for example if it has unconfirmed ancestors which
-                                  are replaceable).
-                                  
-       "estimate_mode": "str",    (string, optional, default="unset") The fee estimate mode, must be one of (case insensitive):
-                                  "unset"
-                                  "economical"
-                                  "conservative"
-       "outputs": [               (json array, optional, default=[]) New outputs (key-value pairs) which will replace
-                                  the original ones, if provided. Each address can only appear once and there can
-                                  only be one "data" object.
-                                  
-         {                        (json object)
-           "address": amount,     (numeric or string, required) A key-value pair. The key (string) is the bitcoin address,
-                                  the value (float or string) is the amount in BTC
-           ...
-         },
-         {                        (json object)
-           "data": "hex",         (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
-         },
+  /* [
+       {                       (json object)
+         "address": amount,    (numeric or string, required) A key-value pair. The key (string) is the bitcoin address,
+                               the value (float or string) is the amount in BTC
          ...
-       ], */
+       },
+       {                       (json object)
+         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+       },
+       ...
+     ] */
   options?: Json
 }
 

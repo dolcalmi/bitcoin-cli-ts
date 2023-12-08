@@ -10,20 +10,14 @@ type ListUnspentParams = {
   /* The maximum confirmations to filter */
   maxconf?: number
   /* [
-       "address",                            (string) bitcoin address
+       "address",    (string) bitcoin address
        ...
      ] */
   addresses?: Array<unknown>
   /* Include outputs that are not safe to spend
        See description of "safe" attribute below. */
   include_unsafe?: boolean
-  /* {
-       "minimumAmount": amount,              (numeric or string, optional, default="0.00") Minimum value of each UTXO in BTC
-       "maximumAmount": amount,              (numeric or string, optional, default=unlimited) Maximum value of each UTXO in BTC
-       "maximumCount": n,                    (numeric, optional, default=unlimited) Maximum number of UTXOs
-       "minimumSumAmount": amount,           (numeric or string, optional, default=unlimited) Minimum sum value of all UTXOs in BTC
-       "include_immature_coinbase": bool,    (boolean, optional, default=false) Include immature coinbase UTXOs
-     } */
+  /* Options object that can be used to pass named arguments, listed below. */
   query_options?: Json
 }
 

@@ -21,7 +21,7 @@ type UtxoUpdatePsbtParams = {
 /**
  * utxoupdatepsbt "psbt" ( ["",{"desc":"str","range":n or [n,n]},...] )
  *
- * Updates all segwit inputs and outputs in a PSBT with data from output descriptors, the UTXO set or the mempool.
+ * Updates all segwit inputs and outputs in a PSBT with data from output descriptors, the UTXO set, txindex, or the mempool.
  *
  */
 export function utxoUpdatePsbt(params: UtxoUpdatePsbtParams) {

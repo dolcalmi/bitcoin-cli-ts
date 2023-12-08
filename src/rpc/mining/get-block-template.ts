@@ -6,16 +6,16 @@ import request from '../../rpc-request'
 type GetBlockTemplateParams = {
   bitcoind: Bitcoind
   /* {
-       "mode": "str",       (string, optional) This must be set to "template", "proposal" (see BIP 23), or omitted
-       "capabilities": [    (json array, optional) A list of strings
-         "str",             (string) client side supported feature, 'longpoll', 'coinbasevalue', 'proposal', 'serverlist', 'workid'
+       "mode": "str",          (string, optional) This must be set to "template", "proposal" (see BIP 23), or omitted
+       "capabilities": [       (json array, optional) A list of strings
+         "str",                (string) client side supported feature, 'longpoll', 'coinbasevalue', 'proposal', 'serverlist', 'workid'
          ...
        ], */
-  template_request?: Json
+  template_request: Json
 }
 
 /**
- * getblocktemplate ( "template_request" )
+ * getblocktemplate {"mode":"str","capabilities":["str",...],"rules":["segwit","str",...],"longpollid":"str","data":"hex"}
  *
  * If the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.
  * It returns data needed to construct a block to work on.

@@ -23,6 +23,7 @@ type ImportPrivkeyParams = {
  * The rescan parameter can be set to false if the key was never used to create transactions. If it is set to false,
  * but the key was used to create transactions, rescanblockchain needs to be called with the appropriate block range.
  * Note: Use "getwalletinfo" to query the scanning progress.
+ * Note: This command is only compatible with legacy wallets. Use "importdescriptors" with "combo(X)" for descriptor wallets.
  *
  */
 export function importPrivkey(params: ImportPrivkeyParams) {

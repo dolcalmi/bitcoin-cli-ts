@@ -12,7 +12,7 @@ type BackupWalletParams = {
 /**
  * backupwallet "destination"
  *
- * Safely copies current wallet file to destination, which can be a directory or a path with filename.
+ * Safely copies the current wallet file to the specified destination, which can either be a directory or a path with a filename.
  *
  */
 export function backupWallet(params: BackupWalletParams) {

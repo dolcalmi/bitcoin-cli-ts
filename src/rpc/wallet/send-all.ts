@@ -6,9 +6,9 @@ import request from '../../rpc-request'
 type SendAllParams = {
   bitcoind: Bitcoind
   /* [
-       "address",                   (string, required) A bitcoin address which receives an equal share of the unspecified amount.
-       {                            (json object)
-         "address": amount,         (numeric or string, required) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in BTC
+       "address",              (string, required) A bitcoin address which receives an equal share of the unspecified amount.
+       {                       (json object)
+         "address": amount,    (numeric or string, required) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in BTC
          ...
        },
        ...
@@ -24,17 +24,8 @@ type SendAllParams = {
   /* Specify a fee rate in sat/vB. */
   fee_rate?: number | string
   /* {
-       "add_to_wallet": bool,       (boolean, optional, default=true) When false, returns the serialized transaction without broadcasting or adding it to the wallet
-       "fee_rate": amount,          (numeric or string, optional, default=not set, fall back to wallet fee estimation) Specify a fee rate in sat/vB.
-       "include_watching": bool,    (boolean, optional, default=true for watch-only wallets, otherwise false) Also select inputs which are watch-only.
-                                    Only solvable inputs can be used. Watch-only destinations are solvable if the public key and/or output script was imported,
-                                    e.g. with 'importpubkey' or 'importmulti' with the 'pubkeys' or 'desc' field.
-       "inputs": [                  (json array, optional, default=[]) Use exactly the specified inputs to build the transaction. Specifying inputs is incompatible with the send_max, minconf, and maxconf options.
-         {                          (json object)
-           "txid": "hex",           (string, required) The transaction id
-           "vout": n,               (numeric, required) The output number
-           "sequence": n,           (numeric, optional, default=depends on the value of the 'replaceable' and 'locktime' arguments) The sequence number
-         },
+       "pubkeys": [        (json array, optional, default=[]) Public keys involved in this transaction.
+         "pubkey",         (string) A public key
          ...
        ], */
   options?: Json
