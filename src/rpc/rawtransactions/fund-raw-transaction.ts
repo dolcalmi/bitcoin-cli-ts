@@ -7,18 +7,13 @@ type FundRawTransactionParams = {
   bitcoind: Bitcoind
   /* The hex string of the raw transaction */
   hexstring: string
-  /* {                            (json object)
-           "txid": "hex",             (string, required) The transaction id
-           "vout": n,                 (numeric, required) The output index
-           "weight": n,               (numeric, required) The maximum weight for this input, including the weight of the outpoint and sequence number. Note that serialized signature sizes are not guaranteed to be consistent, so the maximum DER signatures size of 73 bytes should be used when considering ECDSA signatures.Remember to convert serialized sizes to weight units when necessary.
-         }, */
+  /* Options object that can be used to pass named arguments, listed below. For backward compatibility: passing in a true instead of an object will result in {"includeWatching":true} */
   options?: Json
-  /* Whether the transaction hex is a serialized witness transaction.
-       If iswitness is not present, heuristic tests will be used in decoding.
-       If true, only witness deserialization will be tried.
-       If false, only non-witness deserialization will be tried.
-       This boolean should reflect whether the transaction has inputs
-       (e.g. fully valid, or on-chain transactions), if known by the caller. */
+  /* {
+       "pubkeys": [        (json array, optional, default=[]) Public keys involved in this transaction.
+         "pubkey",         (string) A public key
+         ...
+       ], */
   iswitness?: boolean
 }
 

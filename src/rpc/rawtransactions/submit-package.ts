@@ -15,11 +15,11 @@ type SubmitPackageParams = {
 /**
  * submitpackage ["rawtx",...]
  *
- * Submit a package of raw transactions (serialized, hex-encoded) to local node (-regtest only).
+ * Submit a package of raw transactions (serialized, hex-encoded) to local node.
+ * The package must consist of a child with its parents, and none of the parents may depend on one another.
  * The package will be validated according to consensus and mempool policy rules. If all transactions pass, they will be accepted to mempool.
  * This RPC is experimental and the interface may be unstable. Refer to doc/policy/packages.md for documentation on package policies.
- * Warning: until package relay is in use, successful submission does not mean the transaction will propagate to other nodes on the network.
- * Currently, each transaction is broadcasted individually after submission, which means they must meet other nodes' feerate requirements alone.
+ * Warning: successful submission does not mean the transactions will propagate throughout the network.
  *
  */
 export function submitPackage(params: SubmitPackageParams) {

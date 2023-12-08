@@ -26,6 +26,7 @@ type AddMultisigAddressParams = {
  * This functionality is only intended for use with non-watchonly addresses.
  * See `importaddress` for watchonly p2sh address support.
  * If 'label' is specified, assign address to that label.
+ * Note: This command is only compatible with legacy wallets.
  *
  */
 export function addMultisigAddress(params: AddMultisigAddressParams) {

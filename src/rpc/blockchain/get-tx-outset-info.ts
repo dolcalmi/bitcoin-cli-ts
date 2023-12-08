@@ -5,7 +5,7 @@ import request from '../../rpc-request'
 
 type GetTxOutsetInfoParams = {
   bitcoind: Bitcoind
-  /* Which UTXO set hash should be calculated. Options: 'hash_serialized_2' (the legacy algorithm), 'muhash', 'none'. */
+  /* Which UTXO set hash should be calculated. Options: 'hash_serialized_3' (the legacy algorithm), 'muhash', 'none'. */
   hash_type?: string
   /* The block hash or height of the target height (only available with coinstatsindex). */
   hash_or_height?: string | number

@@ -32,7 +32,7 @@ type ScanBlocksParams = {
 }
 
 /**
- * scanblocks "action" ( [scanobjects,...] start_height stop_height "filtertype" "options" )
+ * scanblocks "action" ( [scanobjects,...] start_height stop_height "filtertype" options )
  *
  * Return relevant blockhashes for given descriptors (requires blockfilterindex).
  * This call may take several minutes. Make sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)

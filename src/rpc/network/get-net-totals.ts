@@ -11,7 +11,7 @@ type GetNetTotalsParams = {
  * getnettotals
  *
  * Returns information about network traffic, including bytes in, bytes out,
- * and current time.
+ * and current system time.
  *
  */
 export function getNetTotals(params: GetNetTotalsParams) {

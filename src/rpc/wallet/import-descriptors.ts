@@ -25,7 +25,7 @@ type ImportDescriptorsParams = {
 }
 
 /**
- * importdescriptors "requests"
+ * importdescriptors requests
  *
  * Import descriptors. This will trigger a rescan of the blockchain based on the earliest timestamp of all descriptors being imported. Requires a new wallet backup.
  * Note: This call can take over an hour to complete if using an early timestamp; during that time, other rpc calls

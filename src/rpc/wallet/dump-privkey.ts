@@ -14,6 +14,7 @@ type DumpPrivkeyParams = {
  *
  * Reveals the private key corresponding to 'address'.
  * Then the importprivkey can be used with this output
+ * Note: This command is only compatible with legacy wallets.
  *
  */
 export function dumpPrivkey(params: DumpPrivkeyParams) {

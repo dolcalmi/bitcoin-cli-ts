@@ -6,14 +6,11 @@ import request from '../../rpc-request'
 type SimulateRawTransactionParams = {
   bitcoind: Bitcoind
   /* [
-       "rawtx",                      (string)
+       "rawtx",    (string)
        ...
      ] */
   rawtxs?: Array<unknown>
-  /* {
-       "include_watchonly": bool,    (boolean, optional, default=true for watch-only wallets, otherwise false) Whether to include watch-only addresses (see RPC importaddress)
-       ...
-     } */
+  /* Options object that can be used to pass named arguments, listed below. */
   options?: Json
 }
 

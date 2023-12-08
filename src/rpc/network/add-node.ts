@@ -5,14 +5,16 @@ import request from '../../rpc-request'
 
 type AddNodeParams = {
   bitcoind: Bitcoind
-  /* The node (see getpeerinfo for nodes) */
+  /* The address of the peer to connect to */
   node: string
   /* 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once */
   command: string
+  /* Attempt to connect using BIP324 v2 transport protocol (ignored for 'remove' command) */
+  v2transport?: boolean
 }
 
 /**
- * addnode "node" "command"
+ * addnode "node" "command" ( v2transport )
  *
  * Attempts to add or remove a node from the addnode list.
  * Or try a connection to a node once.
