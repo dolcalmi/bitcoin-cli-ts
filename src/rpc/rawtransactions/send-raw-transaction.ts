@@ -8,6 +8,7 @@ type SendRawTransactionParams = {
   /* The hex string of the raw transaction */
   hexstring: string
   /* Reject transactions whose fee rate is higher than the specified value, expressed in BTC/kvB.
+       Fee rates larger than 1BTC/kvB are rejected.
        Set to 0 to accept any fee rate. */
   maxfeerate?: number | string
   /* Reject transactions with provably unspendable outputs (e.g. 'datacarrier' outputs that use the OP_RETURN opcode) greater than the specified value, expressed in BTC.
