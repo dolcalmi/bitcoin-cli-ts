@@ -12,7 +12,7 @@ type DumpTxOutsetParams = {
 /**
  * dumptxoutset "path"
  *
- * Write the serialized UTXO set to disk.
+ * Write the serialized UTXO set to a file.
  *
  */
 export function dumpTxOutset(params: DumpTxOutsetParams) {

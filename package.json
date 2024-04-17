@@ -1,6 +1,6 @@
 {
   "name": "bitcoin-cli-ts",
-  "version": "26.1.0",
+  "version": "27.0.0",
   "description": "Auto-generated Bitcoin client library for bitcoind JSON-RPC API",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

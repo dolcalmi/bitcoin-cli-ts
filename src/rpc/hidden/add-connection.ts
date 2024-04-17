@@ -9,10 +9,12 @@ type AddConnectionParams = {
   address: string
   /* Type of connection to open ("outbound-full-relay", "block-relay-only", "addr-fetch" or "feeler"). */
   connection_type: string
+  /* Attempt to connect using BIP324 v2 transport protocol */
+  v2transport: boolean
 }
 
 /**
- * addconnection "address" "connection_type"
+ * addconnection "address" "connection_type" v2transport
  *
  * Open an outbound connection to a specified node. This RPC is for testing only.
  *

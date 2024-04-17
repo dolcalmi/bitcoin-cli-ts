@@ -17,6 +17,10 @@ type EncryptWalletParams = {
  * will require the passphrase to be set prior the making these calls.
  * Use the walletpassphrase call for this, and then walletlock call.
  * If the wallet is already encrypted, use the walletpassphrasechange call.
+ * ** IMPORTANT **
+ * For security reasons, the encryption process will generate a new HD seed, resulting
+ * in the creation of a fresh set of active descriptors. Therefore, it is crucial to
+ * securely back up the newly generated wallet file using the backupwallet RPC.
  *
  */
 export function encryptWallet(params: EncryptWalletParams) {

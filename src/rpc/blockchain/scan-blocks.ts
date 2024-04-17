@@ -11,10 +11,10 @@ type ScanBlocksParams = {
        "status" for progress report (in %) of the current scan */
   action: string
   /* [
-       "descriptor",                      (string) An output descriptor
-       {                                  (json object) An object with output descriptor and metadata
-         "desc": "str",                   (string, required) An output descriptor
-         "range": n or [n,n],             (numeric or array, optional, default=1000) The range of HD chain indexes to explore (either end or [begin,end])
+       "descriptor",             (string) An output descriptor
+       {                         (json object) An object with output descriptor and metadata
+         "desc": "str",          (string, required) An output descriptor
+         "range": n or [n,n],    (numeric or array, optional, default=1000) The range of HD chain indexes to explore (either end or [begin,end])
        },
        ...
      ] */
@@ -25,9 +25,7 @@ type ScanBlocksParams = {
   stop_height?: number
   /* The type name of the filter */
   filtertype?: string
-  /* {
-       "filter_false_positives": bool,    (boolean, optional, default=false) Filter false positives (slower and may fail on pruned nodes). Otherwise they may occur at a rate of 1/M
-     } */
+  /* Options object that can be used to pass named arguments, listed below. */
   options?: Json
 }
 

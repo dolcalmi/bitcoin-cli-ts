@@ -10,7 +10,9 @@ type TestMempoolAcceptParams = {
        ...
      ] */
   rawtxs: Array<unknown>
-  /* Reject transactions whose fee rate is higher than the specified value, expressed in BTC/kvB */
+  /* Reject transactions whose fee rate is higher than the specified value, expressed in BTC/kvB.
+       Fee rates larger than 1BTC/kvB are rejected.
+       Set to 0 to accept any fee rate. */
   maxfeerate?: number | string
 }
 

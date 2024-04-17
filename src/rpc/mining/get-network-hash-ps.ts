@@ -5,7 +5,7 @@ import request from '../../rpc-request'
 
 type GetNetworkHashPsParams = {
   bitcoind: Bitcoind
-  /* The number of blocks, or -1 for blocks since last difficulty change. */
+  /* The number of previous blocks to calculate estimate from, or -1 for blocks since last difficulty change. */
   nblocks?: number
   /* To estimate at the time of the given height. */
   height?: number
