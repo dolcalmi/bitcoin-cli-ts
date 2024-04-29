@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "json-bigint": "^1.0.0",
-    "json-rpc-2.0": "^1.6.0",
-    "undici": "^5.27.2"
+    "json-rpc-2.0": "^1.7.0",
+    "undici": "^6.14.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
