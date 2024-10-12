@@ -17,9 +17,15 @@ type SendAllParams = {
   /* Confirmation target in blocks */
   conf_target?: number
   /* The fee estimate mode, must be one of (case insensitive):
-       "unset"
-       "economical"
-       "conservative" */
+       unset, economical, conservative 
+       unset means no mode set (economical mode is used if the transaction is replaceable;
+       otherwise, conservative mode is used). 
+       economical estimates use a shorter time horizon, making them more
+       responsive to short-term drops in the prevailing fee market. This mode
+       potentially returns a lower fee rate estimate.
+       conservative estimates use a longer time horizon, making them
+       less responsive to short-term drops in the prevailing fee market. This mode
+       potentially returns a higher fee rate estimate. */
   estimate_mode?: string
   /* Specify a fee rate in sat/vB. */
   fee_rate?: number | string
@@ -35,7 +41,7 @@ type SendAllParams = {
  * sendall ["address",{"address":amount,...},...] ( conf_target "estimate_mode" fee_rate options )
  *
  * EXPERIMENTAL warning: this call may be changed in future releases.
- * Spend the value of all (or specific) confirmed UTXOs in the wallet to one or more recipients.
+ * Spend the value of all (or specific) confirmed UTXOs and unconfirmed change in the wallet to one or more recipients.
  * Unconfirmed inbound UTXOs and locked UTXOs will not be spent. Sendall will respect the avoid_reuse wallet flag.
  * If your wallet contains many small inputs, either because it received tiny payments or as a result of accumulating change, consider using `send_max` to exclude inputs that are worth less than the fees needed to spend them.
  *

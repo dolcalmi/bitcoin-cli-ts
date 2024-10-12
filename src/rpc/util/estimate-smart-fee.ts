@@ -8,14 +8,14 @@ type EstimateSmartFeeParams = {
   /* Confirmation target in blocks (1 - 1008) */
   conf_target: number
   /* The fee estimate mode.
-       Whether to return a more conservative estimate which also satisfies
-       a longer history. A conservative estimate potentially returns a
-       higher feerate and is more likely to be sufficient for the desired
-       target, but is not as responsive to short term drops in the
-       prevailing fee market. Must be one of (case insensitive):
-       "unset"
-       "economical"
-       "conservative" */
+       unset, economical, conservative 
+       unset means no mode set (default mode will be used). 
+       economical estimates use a shorter time horizon, making them more
+       responsive to short-term drops in the prevailing fee market. This mode
+       potentially returns a lower fee rate estimate.
+       conservative estimates use a longer time horizon, making them
+       less responsive to short-term drops in the prevailing fee market. This mode
+       potentially returns a higher fee rate estimate. */
   estimate_mode?: string
 }
 

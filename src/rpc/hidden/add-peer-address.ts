@@ -16,7 +16,7 @@ type AddPeerAddressParams = {
 /**
  * addpeeraddress "address" port ( tried )
  *
- * Add the address of a potential peer to the address manager. This RPC is for testing only.
+ * Add the address of a potential peer to an address manager table. This RPC is for testing only.
  *
  */
 export function addPeerAddress(params: AddPeerAddressParams) {
