@@ -26,8 +26,8 @@ type ScanTxOutsetParams = {
  *
  * Scans the unspent transaction output set for entries that match certain output descriptors.
  * Examples of output descriptors are:
- *     addr(<address>)                      Outputs whose scriptPubKey corresponds to the specified address (does not include P2PK)
- *     raw(<hex script>)                    Outputs whose scriptPubKey equals the specified hex scripts
+ *     addr(<address>)                      Outputs whose output script corresponds to the specified address (does not include P2PK)
+ *     raw(<hex script>)                    Outputs whose output script equals the specified hex-encoded bytes
  *     combo(<pubkey>)                      P2PK, P2PKH, P2WPKH, and P2SH-P2WPKH outputs for the given pubkey
  *     pkh(<pubkey>)                        P2PKH outputs for the given pubkey
  *     sh(multi(<n>,<pubkey>,<pubkey>,...)) P2SH-multisig outputs for the given threshold and pubkeys

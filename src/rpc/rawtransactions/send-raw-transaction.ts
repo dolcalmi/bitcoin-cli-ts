@@ -24,7 +24,7 @@ type SendRawTransactionParams = {
  * The transaction will be sent unconditionally to all peers, so using sendrawtransaction
  * for manual rebroadcast may degrade privacy by leaking the transaction's origin, as
  * nodes will normally not rebroadcast non-wallet transactions already in their mempool.
- * A specific exception, RPC_TRANSACTION_ALREADY_IN_CHAIN, may throw if the transaction cannot be added to the mempool.
+ * A specific exception, RPC_TRANSACTION_ALREADY_IN_UTXO_SET, may throw if the transaction cannot be added to the mempool.
  * Related RPCs: createrawtransaction, signrawtransactionwithkey
  *
  */

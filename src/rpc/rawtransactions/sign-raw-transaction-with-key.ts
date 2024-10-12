@@ -16,7 +16,7 @@ type SignRawTransactionWithKeyParams = {
        {                            (json object)
          "txid": "hex",             (string, required) The transaction id
          "vout": n,                 (numeric, required) The output number
-         "scriptPubKey": "hex",     (string, required) script key
+         "scriptPubKey": "hex",     (string, required) output script
          "redeemScript": "hex",     (string, optional) (required for P2SH) redeem script
          "witnessScript": "hex",    (string, optional) (required for P2WSH or P2SH-P2WSH) witness script
          "amount": amount,          (numeric or string, optional) (required for Segwit inputs) the amount spent

@@ -24,9 +24,15 @@ type SendToAddressParams = {
   /* Confirmation target in blocks */
   conf_target?: number
   /* The fee estimate mode, must be one of (case insensitive):
-       "unset"
-       "economical"
-       "conservative" */
+       unset, economical, conservative 
+       unset means no mode set (economical mode is used if the transaction is replaceable;
+       otherwise, conservative mode is used). 
+       economical estimates use a shorter time horizon, making them more
+       responsive to short-term drops in the prevailing fee market. This mode
+       potentially returns a lower fee rate estimate.
+       conservative estimates use a longer time horizon, making them
+       less responsive to short-term drops in the prevailing fee market. This mode
+       potentially returns a higher fee rate estimate. */
   estimate_mode?: string
   /* (only available if avoid_reuse wallet flag is set) Avoid spending from dirty addresses; addresses are considered
        dirty if they have previously been used in a transaction. If true, this also activates avoidpartialspends, grouping outputs by their addresses. */
