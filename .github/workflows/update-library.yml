@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -55,7 +55,7 @@ jobs:
       - name: Wait for Changes to be Pulled
         run: sleep 10s
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
           token: ${{ secrets.GH_TOKEN_JP }}
