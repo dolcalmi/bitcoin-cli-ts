@@ -16,6 +16,7 @@ type WaitForBlockParams = {
  *
  * Waits for a specific new block and returns useful info about it.
  * Returns the current block on timeout or exit.
+ * Make sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)
  *
  */
 export function waitForBlock(params: WaitForBlockParams) {

@@ -5,7 +5,7 @@ import request from '../../rpc-request'
 
 type LoadWalletParams = {
   bitcoind: Bitcoind
-  /* The wallet directory or .dat file. */
+  /* The path to the directory of the wallet to be loaded, either absolute or relative to the "wallets" directory. The "wallets" directory is set by the -walletdir option and defaults to the "wallets" folder within the data directory. */
   filename: string
   /* Save wallet name to persistent settings and load on startup. True to add wallet to startup list, false to remove, null to leave unchanged. */
   load_on_startup?: boolean
