@@ -17,6 +17,7 @@ type WaitForBlockHeightParams = {
  * Waits for (at least) block height and returns the height and hash
  * of the current tip.
  * Returns the current block on timeout or exit.
+ * Make sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)
  *
  */
 export function waitForBlockHeight(params: WaitForBlockHeightParams) {
