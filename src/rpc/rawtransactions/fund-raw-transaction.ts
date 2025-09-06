@@ -31,7 +31,10 @@ type FundRawTransactionParams = {
  * Note that all inputs selected must be of standard form and P2SH scripts must be
  * in the wallet using importaddress or addmultisigaddress (to calculate fees).
  * You can see whether this is the case by checking the "solvable" field in the listunspent output.
- * Only pay-to-pubkey, multisig, and P2SH versions thereof are currently supported for watch-only
+ * Only pay-to-pubkey, multisig, and P2SH versions thereof are currently supported for watch-only.
+ * Note that if specifying an exact fee rate, the resulting transaction may have a higher fee rate
+ * if the transaction has unconfirmed inputs. This is because the wallet will attempt to make the
+ * entire package have the given fee rate, not the resulting transaction.
  *
  */
 export function fundRawTransaction(params: FundRawTransactionParams) {
