@@ -12,7 +12,7 @@ type SetTxFeeParams = {
 /**
  * settxfee amount
  *
- * Set the transaction fee rate in BTC/kvB for this wallet. Overrides the global -paytxfee command line parameter.
+ * (DEPRECATED) Set the transaction fee rate in BTC/kvB for this wallet. Overrides the global -paytxfee command line parameter.
  * Can be deactivated by passing 0 as the fee. In that case automatic fee selection will be used by default.
  *
  */

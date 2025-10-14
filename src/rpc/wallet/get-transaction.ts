@@ -7,7 +7,7 @@ type GetTransactionParams = {
   bitcoind: Bitcoind
   /* The transaction id */
   txid: string
-  /* Whether to include watch-only addresses in balance calculation and details[] */
+  /* (DEPRECATED) No longer used */
   include_watchonly?: boolean
   /* Whether to include a `decoded` field containing the decoded transaction (equivalent to RPC decoderawtransaction) */
   verbose?: boolean

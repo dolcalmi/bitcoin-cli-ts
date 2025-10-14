@@ -9,7 +9,7 @@ type ListReceivedByLabelParams = {
   minconf?: number
   /* Whether to include labels that haven't received any payments. */
   include_empty?: boolean
-  /* Whether to include watch-only addresses (see 'importaddress') */
+  /* (DEPRECATED) No longer used */
   include_watchonly?: boolean
   /* Include immature coinbase transactions. */
   include_immature_coinbase?: boolean

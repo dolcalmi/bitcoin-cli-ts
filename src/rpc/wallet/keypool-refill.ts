@@ -12,7 +12,8 @@ type KeypoolRefillParams = {
 /**
  * keypoolrefill ( newsize )
  *
- * Fills the keypool.
+ * Refills each descriptor keypool in the wallet up to the specified number of new keys.
+ * By default, descriptor wallets have 4 active ranged descriptors ("legacy", "p2sh-segwit", "bech32", "bech32m"), each with 1000 entries.
  * Requires wallet passphrase to be set with walletpassphrase call if wallet is encrypted.
  *
  */

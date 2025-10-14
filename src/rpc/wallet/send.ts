@@ -12,7 +12,7 @@ type SendParams = {
          ...
        },
        {                       (json object)
-         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data that becomes a part of an OP_RETURN output
        },
        ...
      ] */
@@ -32,16 +32,18 @@ type SendParams = {
   estimate_mode?: string
   /* Specify a fee rate in sat/vB. */
   fee_rate?: number | string
+  /* Options object that can be used to pass named arguments, listed below. */
+  options?: Json
   /* {
        "pubkeys": [          (json array, optional, default=[]) Public keys involved in this transaction.
          "pubkey",           (string) A public key
          ...
        ], */
-  options?: Json
+  version?: number
 }
 
 /**
- * send [{"address":amount,...},{"data":"hex"},...] ( conf_target "estimate_mode" fee_rate options )
+ * send [{"address":amount,...},{"data":"hex"},...] ( conf_target "estimate_mode" fee_rate options version )
  *
  * EXPERIMENTAL warning: this call may be changed in future releases.
  * Send a transaction.

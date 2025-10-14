@@ -9,7 +9,7 @@ type ListSinceBlockParams = {
   blockhash?: string
   /* Return the nth block hash from the main chain. e.g. 1 would mean the best block hash. Note: this is not used as a filter, but only affects [lastblock] in the return value */
   target_confirmations?: number
-  /* Include transactions to watch-only addresses (see 'importaddress') */
+  /* (DEPRECATED) No longer used */
   include_watchonly?: boolean
   /* Show transactions that were removed due to a reorg in the "removed" array
        (not guaranteed to work on pruned nodes) */

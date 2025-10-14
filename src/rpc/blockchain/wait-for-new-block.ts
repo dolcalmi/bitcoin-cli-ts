@@ -7,10 +7,12 @@ type WaitForNewBlockParams = {
   bitcoind: Bitcoind
   /* Time in milliseconds to wait for a response. 0 indicates no timeout. */
   timeout?: number
+  /* Method waits for the chain tip to differ from this. */
+  current_tip?: string
 }
 
 /**
- * waitfornewblock ( timeout )
+ * waitfornewblock ( timeout "current_tip" )
  *
  * Waits for any new block and returns useful info about it.
  * Returns the current block on timeout or exit.
