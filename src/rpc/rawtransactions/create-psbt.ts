@@ -20,7 +20,7 @@ type CreatePsbtParams = {
          ...
        },
        {                       (json object)
-         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data that becomes a part of an OP_RETURN output
        },
        ...
      ] */
@@ -30,13 +30,17 @@ type CreatePsbtParams = {
   /* Marks this transaction as BIP125-replaceable.
        Allows this transaction to be replaced by a transaction with higher fees. If provided, it is an error if explicit sequence numbers are incompatible. */
   replaceable?: boolean
+  /* Transaction version */
+  version?: number
 }
 
 /**
- * createpsbt [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount,...},{"data":"hex"},...] ( locktime replaceable )
+ * createpsbt [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount,...},{"data":"hex"},...] ( locktime replaceable version )
  *
  * Creates a transaction in the Partially Signed Transaction format.
  * Implements the Creator role.
+ * Note that the transaction's inputs are not signed, and
+ * it is not stored in the wallet or transmitted to the network.
  *
  */
 export function createPsbt(params: CreatePsbtParams) {

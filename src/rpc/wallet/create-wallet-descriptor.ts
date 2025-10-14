@@ -5,7 +5,7 @@ import request from '../../rpc-request'
 
 type CreateWalletDescriptorParams = {
   bitcoind: Bitcoind
-  /* The address type the descriptor will produce. Options are "legacy", "p2sh-segwit", "bech32", and "bech32m". */
+  /* The address type the descriptor will produce. Options are "legacy", "p2sh-segwit", "bech32", "bech32m". */
   type: string
   /* Options object that can be used to pass named arguments, listed below. */
   options?: Json

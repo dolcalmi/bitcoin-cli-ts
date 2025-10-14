@@ -20,7 +20,7 @@ type CreateRawTransactionParams = {
          ...
        },
        {                       (json object)
-         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data that becomes a part of an OP_RETURN output
        },
        ...
      ] */
@@ -30,10 +30,12 @@ type CreateRawTransactionParams = {
   /* Marks this transaction as BIP125-replaceable.
        Allows this transaction to be replaced by a transaction with higher fees. If provided, it is an error if explicit sequence numbers are incompatible. */
   replaceable?: boolean
+  /* Transaction version */
+  version?: number
 }
 
 /**
- * createrawtransaction [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount,...},{"data":"hex"},...] ( locktime replaceable )
+ * createrawtransaction [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount,...},{"data":"hex"},...] ( locktime replaceable version )
  *
  * Create a transaction spending the given inputs and creating new outputs.
  * Outputs can be addresses or data.

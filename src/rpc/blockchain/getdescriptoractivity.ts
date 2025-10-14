@@ -9,7 +9,7 @@ type GetdescriptoractivityParams = {
        "blockhash",              (string) A valid blockhash
        ...
      ] */
-  blockhashes?: Array<unknown>
+  blockhashes: Array<unknown>
   /* [
        "descriptor",             (string) An output descriptor
        {                         (json object) An object with output descriptor and metadata
@@ -18,13 +18,13 @@ type GetdescriptoractivityParams = {
        },
        ...
      ] */
-  scanobjects?: Array<unknown>
+  scanobjects: Array<unknown>
   /* Whether to include unconfirmed activity */
   include_mempool?: boolean
 }
 
 /**
- * getdescriptoractivity ( ["blockhash",...] [scanobjects,...] include_mempool )
+ * getdescriptoractivity ["blockhash",...] [scanobjects,...] ( include_mempool )
  *
  * Get spend and receive activity associated with a set of descriptors for a set of blocks. This command pairs well with the `relevant_blocks` output of `scanblocks()`.
  * This call may take several minutes. If you encounter timeouts, try specifying no RPC timeout (bitcoin-cli -rpcclienttimeout=0)

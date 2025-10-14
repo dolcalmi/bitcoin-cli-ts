@@ -14,7 +14,7 @@ type PsbtBumpFeeParams = {
          ...
        },
        {                       (json object)
-         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data that becomes a part of an OP_RETURN output
        },
        ...
      ] */
@@ -24,9 +24,9 @@ type PsbtBumpFeeParams = {
 /**
  * psbtbumpfee "txid" ( options )
  *
- * Bumps the fee of an opt-in-RBF transaction T, replacing it with a new transaction B.
+ * Bumps the fee of a transaction T, replacing it with a new transaction B.
  * Returns a PSBT instead of creating and signing a new transaction.
- * An opt-in RBF transaction with the given txid must be in the wallet.
+ * A transaction with the given txid must be in the wallet.
  * The command will pay the additional fee by reducing change outputs or adding inputs when necessary.
  * It may add a new change output if one does not already exist.
  * All inputs in the original transaction will be included in the replacement transaction.

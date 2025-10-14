@@ -9,7 +9,7 @@ type ListReceivedByAddressParams = {
   minconf?: number
   /* Whether to include addresses that haven't received any payments. */
   include_empty?: boolean
-  /* Whether to include watch-only addresses (see 'importaddress') */
+  /* (DEPRECATED) No longer used */
   include_watchonly?: boolean
   /* If present and non-empty, only return information on this address. */
   address_filter?: string

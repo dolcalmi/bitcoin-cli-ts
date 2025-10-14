@@ -12,7 +12,7 @@ type ListDescriptorsParams = {
 /**
  * listdescriptors ( private )
  *
- * List all descriptors present in a descriptor-enabled wallet.
+ * List all descriptors present in a wallet.
  *
  */
 export function listDescriptors(params: ListDescriptorsParams) {

@@ -22,7 +22,7 @@ type WalletCreateFundedPsbtParams = {
          ...
        },
        {                       (json object)
-         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+         "data": "hex",        (string, required) A key-value pair. The key must be "data", the value is hex-encoded data that becomes a part of an OP_RETURN output
        },
        ...
      ] */
@@ -31,16 +31,18 @@ type WalletCreateFundedPsbtParams = {
   locktime?: number
   /* Options object that can be used to pass named arguments, listed below. */
   options?: Json
+  /* Include BIP 32 derivation paths for public keys if we know them */
+  bip32derivs?: boolean
   /* {
        "pubkeys": [        (json array, optional, default=[]) Public keys involved in this transaction.
          "pubkey",         (string) A public key
          ...
        ], */
-  bip32derivs?: boolean
+  version?: number
 }
 
 /**
- * walletcreatefundedpsbt ( [{"txid":"hex","vout":n,"sequence":n,"weight":n},...] ) [{"address":amount,...},{"data":"hex"},...] ( locktime options bip32derivs )
+ * walletcreatefundedpsbt ( [{"txid":"hex","vout":n,"sequence":n,"weight":n},...] ) [{"address":amount,...},{"data":"hex"},...] ( locktime options bip32derivs version )
  *
  * Creates and funds a transaction in the Partially Signed Transaction format.
  * Implements the Creator and Updater roles.

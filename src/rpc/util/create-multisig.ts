@@ -5,7 +5,7 @@ import request from '../../rpc-request'
 
 type CreateMultisigParams = {
   bitcoind: Bitcoind
-  /* The number of required signatures out of the n keys. */
+  /* The number of required signatures out of the m keys. */
   nrequired: number
   /* [
        "key",      (string) The hex-encoded public key
@@ -19,7 +19,7 @@ type CreateMultisigParams = {
 /**
  * createmultisig nrequired ["key",...] ( "address_type" )
  *
- * Creates a multi-signature address with n signature of m keys required.
+ * Creates a multi-signature address with n signatures of m keys required.
  * It returns a json object with the address and redeemScript.
  *
  */

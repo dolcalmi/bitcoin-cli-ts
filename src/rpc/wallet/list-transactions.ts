@@ -12,7 +12,7 @@ type ListTransactionsParams = {
   count?: number
   /* The number of transactions to skip */
   skip?: number
-  /* Include transactions to watch-only addresses (see 'importaddress') */
+  /* (DEPRECATED) No longer used */
   include_watchonly?: boolean
 }
 

@@ -9,7 +9,7 @@ type GetBalanceParams = {
   dummy?: string
   /* Only include transactions confirmed at least this many times. */
   minconf?: number
-  /* Also include balance in watch-only addresses (see 'importaddress') */
+  /* No longer used */
   include_watchonly?: boolean
   /* (only available if avoid_reuse wallet flag is set) Do not include balance in dirty outputs; addresses are considered dirty if they have previously been used in a transaction. */
   avoid_reuse?: boolean
